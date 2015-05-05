@@ -1255,7 +1255,7 @@
 				<xs:element ref="target-balance"/>
 				<xs:element ref="credit-card"/>
 				<xs:element ref="paypal-transaction-data" minOccurs="0" />
-				<xs:element ref="ecp"/>
+				<xs:element ref="ecp" minOccurs="0"/>
 				<xs:element ref="invoice-contact-info"/>
 				<xs:element ref="skus"/>
 			</xs:sequence>
@@ -1502,8 +1502,8 @@
 	<xs:element name="paypal-transaction-data">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="pp-transaction-id" />
-				<xs:element ref="pp-subscription-id" />
+				<xs:element ref="pp-transaction-id" minOccurs="0" />
+				<xs:element ref="pp-subscription-id" minOccurs="0" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -1878,7 +1878,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="sku-id" />
-				<xs:element ref="sku-name" />
+				<xs:element ref="sku-name" minOccurs="0" />
 				<xs:element ref="sku-charge-price" minOccurs="0"
 					maxOccurs="2" />
 			</xs:sequence>

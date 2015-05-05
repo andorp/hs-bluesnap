@@ -3687,7 +3687,7 @@ elementToXMLInvoice_status :: Xsd.XsdString -> [Content ()]
 elementToXMLInvoice_status = schemaTypeToXML "invoice-status"
  
 data Order = Order
-        { order_order_id :: Xs.Long
+        { order_order_id :: Maybe Xs.Long
         , order_soft_descriptor :: Maybe Xsd.XsdString
         , order_ordering_shopper :: Ordering_shopper
         , order_transaction_payment_info :: Maybe Transaction_payment_info
@@ -3702,7 +3702,7 @@ instance SchemaType Order where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Order
-            `apply` elementOrder_id
+            `apply` optional (elementOrder_id)
             `apply` optional (elementSoft_descriptor)
             `apply` elementOrdering_shopper
             `apply` optional (elementTransaction_payment_info)
@@ -3715,7 +3715,7 @@ instance SchemaType Order where
                             (elementFulfillment)
     schemaTypeToXML s x@Order{} =
         toXMLElement s []
-            [ elementToXMLOrder_id $ order_order_id x
+            [ maybe [] (elementToXMLOrder_id) $ order_order_id x
             , maybe [] (elementToXMLSoft_descriptor) $ order_soft_descriptor x
             , elementToXMLOrdering_shopper $ order_ordering_shopper x
             , maybe [] (elementToXMLTransaction_payment_info) $ order_transaction_payment_info x
@@ -5370,7 +5370,7 @@ elementToXMLShopping_context = schemaTypeToXML "shopping-context"
  
 data Sku = Sku
         { sku_sku_id :: Xs.Long
-        , sku_sku_name :: Xsd.XsdString
+        , sku_sku_name :: Maybe Xsd.XsdString
         , sku_sku_charge_price :: [Sku_charge_price]
         }
         deriving (Eq,Show)
@@ -5379,13 +5379,13 @@ instance SchemaType Sku where
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Sku
             `apply` elementSku_id
-            `apply` elementSku_name
+            `apply` optional (elementSku_name)
             `apply` between (Occurs (Just 0) (Just 2))
                             (elementSku_charge_price)
     schemaTypeToXML s x@Sku{} =
         toXMLElement s []
             [ elementToXMLSku_id $ sku_sku_id x
-            , elementToXMLSku_name $ sku_sku_name x
+            , maybe [] (elementToXMLSku_name) $ sku_sku_name x
             , concatMap (elementToXMLSku_charge_price) $ sku_sku_charge_price x
             ]
  

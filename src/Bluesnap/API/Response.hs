@@ -3544,7 +3544,7 @@ data Financial_transaction = Financial_transaction
         , financial_transaction_target_balance :: Xsd.XsdString
         , financial_transaction_credit_card :: Credit_card
         , financial_transaction_paypal_transaction_data :: Maybe Paypal_transaction_data
-        , financial_transaction_ecp :: Ecp
+        , financial_transaction_ecp :: Maybe Ecp
         , financial_transaction_invoice_contact_info :: Invoice_contact_info
         , financial_transaction_skus :: Skus
         }
@@ -3565,7 +3565,7 @@ instance SchemaType Financial_transaction where
             `apply` elementTarget_balance
             `apply` elementCredit_card
             `apply` optional (elementPaypal_transaction_data)
-            `apply` elementEcp
+            `apply` optional (elementEcp)
             `apply` elementInvoice_contact_info
             `apply` elementSkus
     schemaTypeToXML s x@Financial_transaction{} =
@@ -3582,7 +3582,7 @@ instance SchemaType Financial_transaction where
             , elementToXMLTarget_balance $ financial_transaction_target_balance x
             , elementToXMLCredit_card $ financial_transaction_credit_card x
             , maybe [] (elementToXMLPaypal_transaction_data) $ financial_transaction_paypal_transaction_data x
-            , elementToXMLEcp $ financial_transaction_ecp x
+            , maybe [] (elementToXMLEcp) $ financial_transaction_ecp x
             , elementToXMLInvoice_contact_info $ financial_transaction_invoice_contact_info x
             , elementToXMLSkus $ financial_transaction_skus x
             ]
@@ -4284,20 +4284,20 @@ elementToXMLPaypal :: Paypal -> [Content ()]
 elementToXMLPaypal = schemaTypeToXML "paypal"
  
 data Paypal_transaction_data = Paypal_transaction_data
-        { paypal_transaction_data_pp_transaction_id :: Xsd.XsdString
-        , paypal_transaction_data_pp_subscription_id :: Xsd.XsdString
+        { paypal_transaction_data_pp_transaction_id :: Maybe Xsd.XsdString
+        , paypal_transaction_data_pp_subscription_id :: Maybe Xsd.XsdString
         }
         deriving (Eq,Show)
 instance SchemaType Paypal_transaction_data where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Paypal_transaction_data
-            `apply` elementPp_transaction_id
-            `apply` elementPp_subscription_id
+            `apply` optional (elementPp_transaction_id)
+            `apply` optional (elementPp_subscription_id)
     schemaTypeToXML s x@Paypal_transaction_data{} =
         toXMLElement s []
-            [ elementToXMLPp_transaction_id $ paypal_transaction_data_pp_transaction_id x
-            , elementToXMLPp_subscription_id $ paypal_transaction_data_pp_subscription_id x
+            [ maybe [] (elementToXMLPp_transaction_id) $ paypal_transaction_data_pp_transaction_id x
+            , maybe [] (elementToXMLPp_subscription_id) $ paypal_transaction_data_pp_subscription_id x
             ]
  
 elementPaypal_transaction_data :: XMLParser Paypal_transaction_data
@@ -5370,7 +5370,7 @@ elementToXMLShopping_context = schemaTypeToXML "shopping-context"
  
 data Sku = Sku
         { sku_sku_id :: Xs.Long
-        , sku_sku_name :: Xsd.XsdString
+        , sku_sku_name :: Maybe Xsd.XsdString
         , sku_sku_charge_price :: [Sku_charge_price]
         }
         deriving (Eq,Show)
@@ -5379,13 +5379,13 @@ instance SchemaType Sku where
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Sku
             `apply` elementSku_id
-            `apply` elementSku_name
+            `apply` optional (elementSku_name)
             `apply` between (Occurs (Just 0) (Just 2))
                             (elementSku_charge_price)
     schemaTypeToXML s x@Sku{} =
         toXMLElement s []
             [ elementToXMLSku_id $ sku_sku_id x
-            , elementToXMLSku_name $ sku_sku_name x
+            , maybe [] (elementToXMLSku_name) $ sku_sku_name x
             , concatMap (elementToXMLSku_charge_price) $ sku_sku_charge_price x
             ]
  

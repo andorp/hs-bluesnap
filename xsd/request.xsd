@@ -1296,7 +1296,7 @@
 	<xs:element name="order">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="order-id" />
+				<xs:element ref="order-id" minOccurs="0" />
 				<xs:element ref="soft-descriptor" minOccurs="0" />
 				<xs:element ref="ordering-shopper" />
 				<xs:element ref="transaction-payment-info" minOccurs="0"/>	
@@ -1878,7 +1878,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="sku-id" />
-				<xs:element ref="sku-name" />
+				<xs:element ref="sku-name" minOccurs="0" />
 				<xs:element ref="sku-charge-price" minOccurs="0"
 					maxOccurs="2" />
 			</xs:sequence>
