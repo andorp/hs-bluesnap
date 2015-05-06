@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order xmlns="http://ws.plimus.com">
+   <order-id>3941161</order-id>
+   <ordering-shopper>
+      <shopper-id>19481324</shopper-id>
+   </ordering-shopper>
+   <cart>
+      <charged-currency>EUR</charged-currency>
+      <cart-item>
+         <sku>
+            <sku-id>2180514</sku-id>
+            <sku-name>Example Product Example SKU</sku-name>
+         </sku>
+         <quantity>1</quantity>
+         <item-sub-total>55.00</item-sub-total>
+      </cart-item>
+      <tax>0.00</tax>
+      <tax-rate>0</tax-rate>
+      <total-cart-cost>55.00</total-cart-cost>
+   </cart>
+   <post-sale-info>
+      <invoices>
+         <invoice>
+            <invoice-id>38442058</invoice-id>
+            <url>http://localhost:8080/jsp/show_invoice.jsp?ref=1F1B22FF6BE6C35E</url>
+            <financial-transactions>
+               <financial-transaction>
+                  <status>Approved</status>
+                  <date-due>10-Nov-14</date-due>
+                  <date-created>10-Nov-14</date-created>
+                  <amount>55.00</amount>
+                  <currency>EUR</currency>
+                  <soft-descriptor>BLS*BLUESNAP</soft-descriptor>
+                  <payment-method>Credit Card</payment-method>
+                  <target-balance>PLIMUS_ACCOUNT</target-balance>
+                  <credit-card>
+                     <card-last-four-digits>1111</card-last-four-digits>
+                     <card-type>Visa</card-type>
+                     <expiration-month>9</expiration-month>
+                     <expiration-year>2019</expiration-year>
+                  </credit-card>
+                  <paypal-transaction-data />
+                  <invoice-contact-info>
+                     <first-name>John</first-name>
+                     <last-name>Doe</last-name>
+                     <email>John@corp.com</email>
+                     <address1>Main street 1</address1>
+                     <city>Hometown</city>
+                     <state>NY</state>
+                     <zip>2134124</zip>
+                     <country>us</country>
+                     <phone>03454646544</phone>
+                  </invoice-contact-info>
+                  <skus>
+                     <sku>
+                        <sku-id>2180514</sku-id>
+                     </sku>
+                  </skus>
+               </financial-transaction>
+            </financial-transactions>
+         </invoice>
+      </invoices>
+   </post-sale-info>
+   <fulfillment>
+      <license-keys />
+   </fulfillment>
+</order>

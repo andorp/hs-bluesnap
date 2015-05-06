@@ -1,0 +1,29 @@
+<order xmlns="http://ws.plimus.com">
+  <soft-descriptor>DescTest</soft-descriptor>
+  <ordering-shopper>
+    <shopper-id>19484284</shopper-id>
+    <web-info>
+      <ip>141.101.125.148</ip>
+      <remote-host>en.wikipedia.org</remote-host>
+      <user-agent>Mozilla/5.0 (Linux; X11)</user-agent>
+      <accept-language>da</accept-language>
+    </web-info>
+    <ecp>
+      <account-type>CONSUMER_CHECKING</account-type>
+      <public-account-number>99992</public-account-number>
+      <public-routing-number>75150</public-routing-number>
+    </ecp>
+  </ordering-shopper>
+  <cart>
+    <cart-item>
+      <sku>
+        <sku-id>2180434</sku-id>
+      </sku>
+      <quantity>1</quantity>
+    </cart-item>
+  </cart>
+  <expected-total-price>
+    <amount>20</amount>
+    <currency>USD</currency>
+  </expected-total-price>
+</order>

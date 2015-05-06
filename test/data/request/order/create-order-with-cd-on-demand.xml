@@ -1,0 +1,23 @@
+<order xmlns="http://ws.plimus.com">
+  <ordering-shopper>
+    <shopper-id>19576516</shopper-id>
+    <web-info>
+      <ip>62.219.121.253</ip>
+      <remote-host>www.merchant.com</remote-host>
+      <user-agent>Mozilla/5.0 (Linux; X11)</user-agent>
+    </web-info>
+  </ordering-shopper>
+  <cart>
+    <cart-item>
+      <sku>
+        <sku-id>2152762</sku-id>
+      </sku>
+      <quantity>1</quantity>
+    </cart-item>
+    <cdod>true</cdod>
+  </cart>
+  <expected-total-price>
+    <amount>26.90</amount>
+    <currency>USD</currency>
+  </expected-total-price>
+</order>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order xmlns="http://ws.plimus.com">
+  <order-id>3922007</order-id>
+  <ordering-shopper>
+    <shopper-id>19484284</shopper-id>
+  </ordering-shopper>
+  <cart>
+    <charged-currency>USD</charged-currency>
+    <cart-item>
+      <sku>
+        <sku-id>2180434</sku-id>
+        <sku-name>cartcalc 20D</sku-name>
+      </sku>
+      <quantity>1</quantity>
+      <item-sub-total>20.00</item-sub-total>
+    </cart-item>
+    <tax>0.00</tax>
+    <tax-rate>0</tax-rate>
+    <total-cart-cost>20.00</total-cart-cost>
+  </cart>
+  <post-sale-info>
+    <invoices>
+      <invoice>
+        <invoice-id>38418324</invoice-id>
+        <url>http://sandbox.bluesnap.com/jsp/show_invoice.jsp?ref=7C6D7335F58E97BB</url>
+        <financial-transactions>
+          <financial-transaction>
+            <status>Approved</status>
+            <date-due>19-Aug-14</date-due>
+            <date-created>19-Aug-14</date-created>
+            <amount>20.00</amount>
+            <currency>USD</currency>
+            <soft-descriptor>PLIMUS.COM</soft-descriptor>
+            <payment-method>Electronic Check Presentment</payment-method>
+            <target-balance>PLIMUS_ACCOUNT</target-balance>
+            <paypal-transaction-data />
+            <ecp>
+              <account-type>CONSUMER_CHECKING</account-type>
+              <public-account-number>99992</public-account-number>
+              <public-routing-number>75150</public-routing-number>
+            </ecp>
+            <invoice-contact-info>
+              <vat-code>123abc123</vat-code>
+              <title>Mrs.</title>
+              <first-name>John</first-name>
+              <last-name>Black</last-name>
+              <email>johndoe@baba.com</email>
+              <company-name>PLIMUS UK</company-name>
+              <address1>5 star drive</address1>
+              <address2>3rd entrance</address2>
+              <city>Purchase</city>
+              <state>NY</state>
+              <zip>34645</zip>
+              <country>us</country>
+              <phone>1800400500</phone>
+              <fax>1800400500</fax>
+            </invoice-contact-info>
+            <skus>
+              <sku>
+                <sku-id>2180434</sku-id>
+                <sku-name>cartcalc 20D</sku-name>
+              </sku>
+            </skus>
+          </financial-transaction>
+        </financial-transactions>
+      </invoice>
+    </invoices>
+  </post-sale-info>
+  <fulfillment>
+    <license-keys />
+  </fulfillment>
+</order>

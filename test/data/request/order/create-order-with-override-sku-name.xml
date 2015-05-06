@@ -1,0 +1,25 @@
+<order xmlns="http://ws.plimus.com">
+   <soft-descriptor>DescTest</soft-descriptor>
+   <ordering-shopper>
+      <shopper-id>19505364</shopper-id>
+      <web-info>
+         <ip>157.166.224.25</ip>
+         <remote-host>en.wikipedia.org</remote-host>
+         <user-agent>Mozilla/5.0 (Linux; X11)</user-agent>
+         <accept-language>da</accept-language>
+      </web-info>
+   </ordering-shopper>
+   <cart>
+      <cart-item>
+         <sku>
+            <sku-id>2178314</sku-id>
+            <sku-name>overriding SKU name</sku-name>
+         </sku>
+         <quantity>1</quantity>
+      </cart-item>
+   </cart>
+   <expected-total-price>
+      <amount>100.00</amount>
+      <currency>USD</currency>
+   </expected-total-price>
+</order>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order xmlns="http://ws.plimus.com">
+  <order-id>3953137</order-id>
+  <ordering-shopper>
+    <shopper-id>19505364</shopper-id>
+    <seller-shopper-id>456789123</seller-shopper-id>
+  </ordering-shopper>
+  <cart>
+    <charged-currency>USD</charged-currency>
+    <cart-item>
+      <sku>
+        <sku-id>2181034</sku-id>
+        <sku-name>Subscription Test</sku-name>
+      </sku>
+      <quantity>1</quantity>
+      <url>https://sandbox.bluesnap.com/services/2/subscriptions/39497226</url>
+      <item-sub-total>5.00</item-sub-total>
+    </cart-item>
+    <tax>0.00</tax>
+    <tax-rate>0</tax-rate>
+    <total-cart-cost>5.00</total-cart-cost>
+  </cart>
+  <post-sale-info>
+    <invoices>
+      <invoice>
+        <invoice-id>38461986</invoice-id>
+        <url>https://sandbox.bluesnap.com/jsp/show_invoice.jsp?ref=141E0FACB7903570</url>
+        <financial-transactions>
+          <financial-transaction>
+            <status>Approved</status>
+            <date-due>22-Jan-15</date-due>
+            <date-created>22-Jan-15</date-created>
+            <amount>5.00</amount>
+            <currency>USD</currency>
+            <soft-descriptor>BLS*BLUESNAP</soft-descriptor>
+            <payment-method>Credit Card</payment-method>
+            <target-balance>PLIMUS_ACCOUNT</target-balance>
+            <credit-card>
+              <card-last-four-digits>1111</card-last-four-digits>
+              <card-type>Visa</card-type>
+              <expiration-month>9</expiration-month>
+              <expiration-year>2019</expiration-year>
+            </credit-card>
+            <paypal-transaction-data />
+            <invoice-contact-info>
+              <title>Mr.</title>
+              <first-name>John</first-name>
+              <last-name>Doe</last-name>
+              <email>jdoe@johndoeandsons.com</email>
+              <company-name>JohnDoeAndSons</company-name>
+              <address1>138 Market st</address1>
+              <city>San Francisco</city>
+              <state>CA</state>
+              <zip>756543</zip>
+              <country>us</country>
+              <phone>1413555666</phone>
+              <fax>1413555666789</fax>
+            </invoice-contact-info>
+            <skus>
+              <sku>
+                <sku-id>2181034</sku-id>
+              </sku>
+            </skus>
+          </financial-transaction>
+        </financial-transactions>
+      </invoice>
+    </invoices>
+  </post-sale-info>
+  <fulfillment>
+    <license-keys />
+  </fulfillment>
+</order>
