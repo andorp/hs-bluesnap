@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shopper-subscriptions xmlns="http://ws.plimus.com">
+  <ordering-shopper>
+    <seller-shopper-id>456789123</seller-shopper-id>
+  </ordering-shopper>
+  <subscriptions>
+    <url>https://localhost:8444/services/2/subscriptions/39469016</url>
+    <url>https://localhost:8444/services/2/subscriptions/39484454</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486350</url>
+  </subscriptions>
+</shopper-subscriptions>

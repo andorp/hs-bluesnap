@@ -13,5 +13,27 @@ testXMLParser p fname = do
     Right _ -> return ()
 
 testOrderResponseParser = testXMLParser Response.elementOrder
+testOrderRequestParser  = testXMLParser Request.elementOrder
 
-testOrderRequestParser = testXMLParser Request.elementOrder
+testBatchOrderReqParser = testXMLParser Request.elementBatch_order
+testBatchOrderRspParser = testXMLParser Response.elementBatch_order
+
+testFulfillmentRspParser = testXMLParser Response.elementFulfillment
+
+testOrderHistoryRspParser = testXMLParser Response.elementOrder_history
+
+testSubscriptionReqParser = testXMLParser Request.elementSubscription
+testSubscriptionRspParser = testXMLParser Response.elementSubscription
+
+testSubscriptionChargeReqParser = testXMLParser Request.elementSubscription_charge
+testSubscriptionChargeRspParser = testXMLParser Response.elementSubscription_charge
+
+testShopperSubscriptionsRspParser = testXMLParser Response.elementShopper_subscriptions
+
+testShoppingContextReqParser = testXMLParser Request.elementShopping_context
+testShoppingContextRspParser = testXMLParser Response.elementShopping_context
+
+testItemPriceRspParser = testXMLParser Response.elementItem_price
+
+testProductReqParser = testXMLParser Request.elementProduct
+testProductRspParser = testXMLParser Response.elementProduct

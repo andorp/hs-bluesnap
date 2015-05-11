@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subscription xmlns="http://ws.plimus.com">
+  <subscription-id>39450214</subscription-id>
+  <status>A</status>
+  <underlying-sku-id>2178914</underlying-sku-id>
+  <shopper-id>19484284</shopper-id>
+  <credit-card>
+    <card-last-four-digits>4444</card-last-four-digits>
+    <card-type>Master Card</card-type>
+  </credit-card>
+  <catalog-recurring-charge>
+    <currency>USD</currency>
+    <amount>1.00</amount>
+  </catalog-recurring-charge>
+  <charge-frequency>ONDEMAND</charge-frequency>
+  <auto-renew>true</auto-renew>
+  <last-charge-result>
+    <result-code>SUCCESS</result-code>
+  </last-charge-result>
+  <subscription-charges>
+    <url>https://sandbox.bluesnap.com/services/2/subscriptions/39450214/subscription-charges/50043</url>
+    <url>https://sandbox.bluesnap.com/services/2/subscriptions/39450214/subscription-charges/48121</url>
+  </subscription-charges>
+</subscription>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order-history xmlns="http://ws.plimus.com">
+  <ordering-shopper>
+    <seller-shopper-id>99111125</seller-shopper-id>
+  </ordering-shopper>
+  <past-orders>
+    <url>https://sandbox.bluesnap.com/services/2/orders/3921975</url>
+  </past-orders>
+</order-history>

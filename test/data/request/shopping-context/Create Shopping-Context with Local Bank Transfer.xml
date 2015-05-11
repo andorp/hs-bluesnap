@@ -1,0 +1,31 @@
+<shopping-context xmlns="http://ws.plimus.com">
+  <web-info>
+    <ip>62.219.121.253</ip>
+    <remote-host>bzq-219-121-253.static.bezeqint.net.reinventhosting.com</remote-host>
+    <user-agent>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;
+    SV1; GTB6.3; .NET CLR 2.0.50727)</user-agent>
+    <accept-language>en-us</accept-language>
+  </web-info>
+  <order-details>
+    <order>
+      <ordering-shopper>
+        <shopper-id>19505364</shopper-id>
+        <local-bank-transfer>
+          <bank-country>US</bank-country>
+        </local-bank-transfer>
+      </ordering-shopper>
+      <cart>
+        <cart-item>
+          <sku>
+            <sku-id>2180434</sku-id>
+          </sku>
+          <quantity>1</quantity>
+        </cart-item>
+      </cart>
+      <expected-total-price>
+        <amount>21.75</amount>
+        <currency>USD</currency>
+      </expected-total-price>
+    </order>
+  </order-details>
+</shopping-context>

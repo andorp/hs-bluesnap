@@ -1,0 +1,6 @@
+<subscription xmlns="http://ws.plimus.com">
+  <subscription-id>39469016</subscription-id>
+  <status>A</status>
+  <underlying-sku-id>2181034</underlying-sku-id>
+  <shopper-id>19505364</shopper-id>
+</subscription>

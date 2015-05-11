@@ -1,0 +1,69 @@
+<batch-order xmlns="http://ws.plimus.com">
+  <shopper>
+    <web-info>
+      <ip>62.219.121.253</ip>
+    </web-info>
+    <shopper-info>
+      <shopper-currency>USD</shopper-currency>
+      <store-id>4677</store-id>
+      <locale>en</locale>
+      <shopper-contact-info>
+        <title>Mr.</title>
+        <first-name>John</first-name>
+        <last-name>Doe</last-name>
+        <email>jdoe@johndoeandsons.com</email>
+        <company-name>JohnDoeAndSons</company-name>
+        <address1>138 Market st</address1>
+        <city>San Francisco</city>
+        <zip>756543</zip>
+        <state>CA</state>
+        <country>US</country>
+        <phone>1413555666</phone>
+        <fax>1413555666789</fax>
+      </shopper-contact-info>
+      <payment-info>
+        <credit-cards-info>
+          <credit-card-info>
+            <billing-contact-info>
+              <first-name>John</first-name>
+              <last-name>Doe</last-name>
+              <address1>138 Market st</address1>
+              <city>San Francisco</city>
+              <zip>756543</zip>
+              <state>CA</state>
+              <country>US</country>
+            </billing-contact-info>
+            <credit-card>
+              <card-number>4111 1111 1111 1111</card-number>
+              <security-code>123</security-code>
+              <card-type>VISA</card-type>
+              <expiration-month>09</expiration-month>
+              <expiration-year>2019</expiration-year>
+            </credit-card>
+          </credit-card-info>
+        </credit-cards-info>
+      </payment-info>
+    </shopper-info>
+  </shopper>
+  <order>
+    <ordering-shopper>
+      <web-info>
+        <ip>62.219.121.253</ip>
+        <remote-host>www.merchant.com</remote-host>
+        <user-agent>Mozilla/5.0 (Linux; X11)</user-agent>
+      </web-info>
+    </ordering-shopper>
+    <cart>
+      <cart-item>
+        <sku>
+          <sku-id>2152762</sku-id>
+        </sku>
+        <quantity>1</quantity>
+      </cart-item>
+    </cart>
+    <expected-total-price>
+      <amount>15.00</amount>
+      <currency>USD</currency>
+    </expected-total-price>
+  </order>
+</batch-order>

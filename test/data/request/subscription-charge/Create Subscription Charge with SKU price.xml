@@ -1,0 +1,15 @@
+<subscription-charge xmlns="http://ws.plimus.com">
+  <charge-info>
+    <charge-description>some text</charge-description>
+    <from-date>07-Sep-13</from-date>
+    <to-date>09-Sep-13</to-date>
+  </charge-info>
+  <sku-charge-price>
+    <amount>100</amount>
+    <currency>USD</currency>
+  </sku-charge-price>
+  <expected-total-price>
+    <amount>100</amount>
+    <currency>USD</currency>
+  </expected-total-price>
+</subscription-charge>

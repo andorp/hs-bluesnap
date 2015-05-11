@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shopper-subscriptions xmlns="http://ws.plimus.com">
+  <ordering-shopper>
+    <shopper-id>19505364</shopper-id>
+  </ordering-shopper>
+  <subscriptions>
+    <url>https://localhost:8444/services/2/subscriptions/39469016</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486350</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486342</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486230</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486346</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486132</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486238</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486234</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486236</url>
+    <url>https://localhost:8444/services/2/subscriptions/39486348</url>
+  </subscriptions>
+</shopper-subscriptions>

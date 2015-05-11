@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item-price xmlns="http://ws.plimus.com">
+  <store-id>12700</store-id>
+  <quantity>1</quantity>
+  <unit-price>
+    <charge-price>
+      <charge-type>initial</charge-type>
+      <value>30.00</value>
+      <currency>USD</currency>
+      <formatted-price>
+        <iso>USD 30.00</iso>
+        <symbol>$30.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+    <charge-price>
+      <charge-type>recurring</charge-type>
+      <value>0.00</value>
+      <currency>USD</currency>
+      <formatted-price>
+        <iso>USD 0.00</iso>
+        <symbol>$0.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+  </unit-price>
+  <total-price>
+    <charge-price>
+      <charge-type>initial</charge-type>
+      <value>30.00</value>
+      <currency>USD</currency>
+      <formatted-price>
+        <iso>USD 30.00</iso>
+        <symbol>$30.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+    <charge-price>
+      <charge-type>recurring</charge-type>
+      <value>0.00</value>
+      <currency>USD</currency>
+      <formatted-price>
+        <iso>USD 0.00</iso>
+        <symbol>$0.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+  </total-price>
+  <total-price-with-tax>
+    <charge-price>
+      <charge-type>initial</charge-type>
+      <value>30.00</value>
+      <currency>USD</currency>
+      <formatted-price>
+        <iso>USD 30.00</iso>
+        <symbol>$30.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+    <charge-price>
+      <charge-type>recurring</charge-type>
+      <value>0.00</value>
+      <currency>USD</currency>
+      <formatted-price>
+        <iso>USD 0.00</iso>
+        <symbol>$0.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+  </total-price-with-tax>
+  <tax>0.00</tax>
+  <tax-recurring>0.00</tax-recurring>
+  <tax-rate>0</tax-rate>
+</item-price>

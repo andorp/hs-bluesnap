@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<batch-order xmlns="http://ws.plimus.com">
+  <shopper>
+    <shopper-info>
+      <username>141380680568216041830051511054973</username>
+      <password>U1jB187</password>
+      <shopper-contact-info>
+        <title>Mr.</title>
+        <first-name>John</first-name>
+        <last-name>Doe</last-name>
+        <email>jdoe@johndoeandsons.com</email>
+        <company-name>JohnDoeAndSons</company-name>
+        <address1>138 Market st</address1>
+        <city>San Francisco</city>
+        <state>CA</state>
+        <zip>756543</zip>
+        <country>us</country>
+        <phone>1413555666</phone>
+        <fax>1413555666789</fax>
+      </shopper-contact-info>
+      <shipping-contact-info/>
+      <invoice-contacts-info>
+        <invoice-contact-info>
+          <default>true</default>
+          <title>Mr.</title>
+          <first-name>John</first-name>
+          <last-name>Doe</last-name>
+          <email>jdoe@johndoeandsons.com</email>
+          <company-name>JohnDoeAndSons</company-name>
+          <address1>138 Market st</address1>
+          <city>San Francisco</city>
+          <state>CA</state>
+          <zip>756543</zip>
+          <country>us</country>
+          <phone>1413555666</phone>
+          <fax>1413555666789</fax>
+        </invoice-contact-info>
+      </invoice-contacts-info>
+      <payment-info>
+        <credit-cards-info>
+          <credit-card-info>
+            <billing-contact-info>
+              <first-name>John</first-name>
+              <last-name>Doe</last-name>
+              <address1>138 Market st</address1>
+              <city>San Francisco</city>
+              <state>CA</state>
+              <zip>756543</zip>
+              <country>us</country>
+            </billing-contact-info>
+            <credit-card>
+              <card-last-four-digits>1111</card-last-four-digits>
+              <card-type>VISA</card-type>
+            </credit-card>
+          </credit-card-info>
+        </credit-cards-info>
+        <ecps-info/>
+        <balance/>
+      </payment-info>
+      <store-id>4677</store-id>
+      <shopper-currency>USD</shopper-currency>
+      <locale>en</locale>
+    </shopper-info>
+  </shopper>
+  <order>
+    <order-id>3950741</order-id>
+    <ordering-shopper>
+      <shopper-id>19576518</shopper-id>
+    </ordering-shopper>
+    <cart>
+      <charged-currency>USD</charged-currency>
+      <cart-item>
+        <sku>
+          <sku-id>2152762</sku-id>
+          <sku-name>Example Product Example SKU</sku-name>
+        </sku>
+        <quantity>1</quantity>
+        <item-sub-total>15.00</item-sub-total>
+      </cart-item>
+      <tax>0.00</tax>
+      <tax-rate>0</tax-rate>
+      <total-cart-cost>15.00</total-cart-cost>
+    </cart>
+    <post-sale-info>
+      <invoices>
+        <invoice>
+          <invoice-id>1008856052</invoice-id>
+          <url>https://sandbox.bluesnap.com/jsp/show_invoice.jsp?ref=AFD7311386AA2F3E284B0AA5582813B6</url>
+          <financial-transactions>
+            <financial-transaction>
+              <status>Approved</status>
+              <date-due>20-Oct-14</date-due>
+              <date-created>20-Oct-14</date-created>
+              <amount>15.00</amount>
+              <currency>USD</currency>
+              <soft-descriptor>BLS*Plimus</soft-descriptor>
+              <payment-method>Credit Card</payment-method>
+              <target-balance>PLIMUS_ACCOUNT</target-balance>
+              <credit-card>
+                <card-last-four-digits>1111</card-last-four-digits>
+                <card-type>Visa</card-type>
+                <expiration-month>9</expiration-month>
+                <expiration-year>2019</expiration-year>
+              </credit-card>
+              <paypal-transaction-data/>
+              <invoice-contact-info>
+                <title>Mr.</title>
+                <first-name>John</first-name>
+                <last-name>Doe</last-name>
+                <email>jdoe@johndoeandsons.com</email>
+                <company-name>JohnDoeAndSons</company-name>
+                <address1>138 Market st</address1>
+                <city>San Francisco</city>
+                <state>CA</state>
+                <zip>756543</zip>
+                <country>us</country>
+                <phone>1413555666</phone>
+                <fax>1413555666789</fax>
+              </invoice-contact-info>
+              <skus>
+                <sku>
+                  <sku-id>2152762</sku-id>
+                </sku>
+              </skus>
+            </financial-transaction>
+          </financial-transactions>
+        </invoice>
+      </invoices>
+    </post-sale-info>
+    <fulfillment>
+      <license-keys/>
+      <download-links>
+        <sku-download-link>
+          <sku-id>2152762</sku-id>
+          <sku-name>Example Product Example SKU</sku-name>
+          <download-link>https://sandbox.bluesnap.com/jsp/dlapp.jsp?ref=1008856052C2152762C12563186</download-link>
+        </sku-download-link>
+      </download-links>
+    </fulfillment>
+  </order>
+</batch-order>

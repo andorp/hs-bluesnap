@@ -1,0 +1,9 @@
+<product xmlns="http://ws.plimus.com">
+  <product-name>new CRUD API product</product-name>
+  <product-short-description>This is the product short description</product-short-description>
+  <product-long-description>This is the product long description</product-long-description>
+  <product-info-url>http://www.myurl.com</product-info-url>
+  <product-merchant-descriptor>merchantname123456</product-merchant-descriptor>
+  <product-support-email>product@newproduct.com</product-support-email>
+  <product-image>image.jpg</product-image>
+</product>

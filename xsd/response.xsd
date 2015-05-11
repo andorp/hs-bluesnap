@@ -140,7 +140,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="base-price" minOccurs="0"/>
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="amount" />
 			</xs:sequence>
 		</xs:complexType>
@@ -236,7 +236,7 @@
 	<xs:element name="sku-initial-price">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="amount" />
 			</xs:sequence>
 		</xs:complexType>
@@ -244,7 +244,7 @@
 	<xs:element name="sku-recurring-price">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="amount" />
 			</xs:sequence>
 		</xs:complexType>
@@ -282,7 +282,7 @@
 	<xs:element name="plan-charge-amount-limit">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="amount" />
 			</xs:sequence>
 		</xs:complexType>
@@ -517,7 +517,7 @@
 	<xs:element name="price-discount">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency"/>
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="amount"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -803,8 +803,8 @@
 	<xs:element name="ecp">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="account-number" />
-				<xs:element ref="routing-number" />
+				<xs:element ref="account-number" minOccurs="0" />
+				<xs:element ref="routing-number" minOccurs="0" />
 				<xs:element ref="account-type" />
 				<xs:element ref="public-account-number" />
 				<xs:element ref="public-routing-number" />
@@ -944,8 +944,8 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="charge-type" />
-				<xs:element ref="value" />
-				<xs:element ref="currency" />
+				<xs:element ref="value" minOccurs="0"/>
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="formatted-price" />
 				<xs:element ref="tax-included" />
 			</xs:sequence>
@@ -1190,12 +1190,12 @@
 				<xs:element ref="shopper-id" minOccurs="0" />
 				<xs:element ref="seller-shopper-id" minOccurs="0" />
 				<xs:element ref="credit-card" minOccurs="0"/>
+				<xs:element ref="web-info" minOccurs="0" />
 				<xs:element ref="ecp" minOccurs="0" />				
 				<xs:element ref="invoice-contact-info" minOccurs="0" />
 				<xs:element ref="paypal" minOccurs="0" />
 				<xs:element ref="wire" minOccurs="0" />
 				<xs:element ref="local-bank-transfer" minOccurs="0" />
-				<xs:element ref="web-info" minOccurs="0" />
 				<xs:element ref="three-d-authenticated-info" minOccurs="0" />
 			</xs:sequence>
 		</xs:complexType>
@@ -1249,11 +1249,11 @@
 				<xs:element ref="amount"/>
 				<xs:element ref="tax" minOccurs="0"/>
 				<xs:element ref="tax-rate" minOccurs="0"/>
-				<xs:element ref="currency"/>
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="soft-descriptor"/>
 				<xs:element ref="payment-method"/>
 				<xs:element ref="target-balance"/>
-				<xs:element ref="credit-card"/>
+				<xs:element ref="credit-card" minOccurs="0" />
 				<xs:element ref="paypal-transaction-data" minOccurs="0" />
 				<xs:element ref="ecp" minOccurs="0"/>
 				<xs:element ref="invoice-contact-info"/>
@@ -1347,7 +1347,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="amount" />
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -1543,8 +1543,8 @@
 	<xs:element name="price">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="value"/>
-				<xs:element ref="currency"/>
+				<xs:element ref="value" minOccurs="0"/>
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="formatted-price" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
@@ -1693,21 +1693,21 @@
 	</xs:element>
 	<xs:element name="shopper-info">
 		<xs:complexType>
-			<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="shopper-currency" minOccurs="0" />
 				<xs:element ref="shopper-id" minOccurs="0" />
+				<xs:element ref="locale" minOccurs="0" />
 				<xs:element ref="seller-shopper-id" minOccurs="0" />
 				<xs:element ref="username" minOccurs="0" maxOccurs="1" />
 				<xs:element ref="password" minOccurs="0" maxOccurs="1" />
 				<xs:element ref="shopper-contact-info" minOccurs="0" />
 				<xs:element ref="shipping-contact-info" minOccurs="0" />
 				<xs:element ref="invoice-contacts-info" minOccurs="0" maxOccurs="1" />
-				<xs:element ref="payment-info" minOccurs="0" />
 				<xs:element ref="store-id" minOccurs="0" />
 				<xs:element ref="vat-code" minOccurs="0" />
-				<xs:element ref="shopper-currency" minOccurs="0" />
-				<xs:element ref="locale" minOccurs="0" />
 				<xs:element ref="permitted-future-charges" minOccurs="0" maxOccurs="1"/>
-			</xs:sequence>
+				<xs:element ref="payment-info" minOccurs="0" />
+			</xs:choice>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="shopper-contact-info">
@@ -1813,8 +1813,8 @@
 	<xs:element name="balance">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency" />
-				<xs:element ref="value" />
+				<xs:element ref="currency" minOccurs="0"/>
+				<xs:element ref="value" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -1889,7 +1889,7 @@
 			<xs:sequence>
 				<xs:element ref="charge-type" />
 				<xs:element ref="amount" />
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -2005,7 +2005,7 @@
 	<xs:element name="recurring-charge">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="amount" />
 			</xs:sequence>
 		</xs:complexType>
@@ -2018,7 +2018,7 @@
 		<xs:element name="catalog-recurring-charge">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="amount" />
 			</xs:sequence>
 		</xs:complexType>
@@ -2026,7 +2026,7 @@
 	<xs:element name="override-recurring-charge">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="amount" />
 			</xs:sequence>
 		</xs:complexType>
@@ -2171,7 +2171,7 @@
 	<xs:element name="cart-params">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="currency" />
+				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="ip" />
 				<xs:element ref="country" />
 				<xs:element ref="state" />

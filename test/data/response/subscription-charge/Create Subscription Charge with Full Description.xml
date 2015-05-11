@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subscription-charge xmlns="http://ws.plimus.com">
+   <charge-info>
+      <charge-description>some text</charge-description>
+   </charge-info>
+   <charge-invoice-info>
+      <date-created>11-Nov-14</date-created>
+      <invoice-id>38442336</invoice-id>
+      <invoice-amount>1.00</invoice-amount>
+      <invoice-currency>USD</invoice-currency>
+   </charge-invoice-info>
+</subscription-charge>

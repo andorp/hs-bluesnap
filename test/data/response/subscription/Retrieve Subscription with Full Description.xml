@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<subscription xmlns="http://ws.plimus.com">
+   <subscription-id>39486350</subscription-id>
+   <status>A</status>
+   <underlying-sku-id>2178914</underlying-sku-id>
+   <shopper-id>19505364</shopper-id>
+   <credit-card>
+      <card-last-four-digits>1111</card-last-four-digits>
+      <card-type>Visa</card-type>
+   </credit-card>
+   <catalog-recurring-charge>
+      <currency>USD</currency>
+      <amount>1.00</amount>
+   </catalog-recurring-charge>
+   <charge-frequency>ONDEMAND</charge-frequency>
+   <auto-renew>true</auto-renew>
+   <last-charge-result>
+      <result-code>SUCCESS</result-code>
+   </last-charge-result>
+   <subscription-charges>
+      <subscription-charge>
+         <charge-info />
+         <charge-invoice-info>
+            <date-created>11-Nov-14</date-created>
+            <invoice-id>38442304</invoice-id>
+            <invoice-amount>5.00</invoice-amount>
+            <invoice-currency>USD</invoice-currency>
+         </charge-invoice-info>
+      </subscription-charge>
+      <subscription-charge>
+         <charge-info>
+            <charge-description>some text</charge-description>
+         </charge-info>
+         <charge-invoice-info>
+            <date-created>11-Nov-14</date-created>
+            <invoice-id>38442336</invoice-id>
+            <invoice-amount>1.00</invoice-amount>
+            <invoice-currency>USD</invoice-currency>
+         </charge-invoice-info>
+      </subscription-charge>
+      <subscription-charge>
+         <charge-info>
+            <charge-description>some text</charge-description>
+         </charge-info>
+         <charge-invoice-info>
+            <date-created>11-Nov-14</date-created>
+            <invoice-id>38442334</invoice-id>
+            <invoice-amount>1.00</invoice-amount>
+            <invoice-currency>USD</invoice-currency>
+         </charge-invoice-info>
+      </subscription-charge>
+   </subscription-charges>
+</subscription>

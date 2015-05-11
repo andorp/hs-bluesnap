@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<product xmlns="http://ws.plimus.com">
+  <product-status>A</product-status>
+  <product-name>new CRUD API product</product-name>
+  <product-short-description>This is the product short description</product-short-description>
+  <product-long-description>This is the product long description</product-long-description>
+  <product-info-url>http://www.myurl.com</product-info-url>
+  <product-merchant-descriptor>MERCHANTNAME123456</product-merchant-descriptor>
+  <product-support-email>product@newproduct.com</product-support-email>
+  <product-skus>
+    <url>https://sandbox.bluesnap.com/services/2/catalog/skus/2180636</url>
+  </product-skus>
+</product>

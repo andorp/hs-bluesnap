@@ -2289,8 +2289,8 @@ elementToXMLEcp_info :: Ecp_info -> [Content ()]
 elementToXMLEcp_info = schemaTypeToXML "ecp-info"
  
 data Ecp = Ecp
-        { ecp_account_number :: Xsd.XsdString
-        , ecp_routing_number :: Xsd.XsdString
+        { ecp_account_number :: Maybe Xsd.XsdString
+        , ecp_routing_number :: Maybe Xsd.XsdString
         , ecp_account_type :: Xsd.XsdString
         , ecp_public_account_number :: Xsd.XsdString
         , ecp_public_routing_number :: Xsd.XsdString
@@ -2300,15 +2300,15 @@ instance SchemaType Ecp where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Ecp
-            `apply` elementAccount_number
-            `apply` elementRouting_number
+            `apply` optional (elementAccount_number)
+            `apply` optional (elementRouting_number)
             `apply` elementAccount_type
             `apply` elementPublic_account_number
             `apply` elementPublic_routing_number
     schemaTypeToXML s x@Ecp{} =
         toXMLElement s []
-            [ elementToXMLAccount_number $ ecp_account_number x
-            , elementToXMLRouting_number $ ecp_routing_number x
+            [ maybe [] (elementToXMLAccount_number) $ ecp_account_number x
+            , maybe [] (elementToXMLRouting_number) $ ecp_routing_number x
             , elementToXMLAccount_type $ ecp_account_type x
             , elementToXMLPublic_account_number $ ecp_public_account_number x
             , elementToXMLPublic_routing_number $ ecp_public_routing_number x
@@ -3377,14 +3377,14 @@ elementToXMLShopper_id = schemaTypeToXML "shopper-id"
 data Ordering_shopper = Ordering_shopper
         { ordering_shopper_shopper_id :: Maybe Xs.Long
         , ordering_shopper_seller_shopper_id :: Maybe Xsd.XsdString
-        , ordering_shopper_credit_card :: Maybe Credit_card
-        , ordering_shopper_ecp :: Maybe Ecp
         , ordering_shopper_invoice_contact_info :: Maybe Invoice_contact_info
         , ordering_shopper_paypal :: Maybe Paypal
         , ordering_shopper_wire :: Maybe Wire
         , ordering_shopper_local_bank_transfer :: Maybe Local_bank_transfer
-        , ordering_shopper_web_info :: Web_info
         , ordering_shopper_three_d_authenticated_info :: Maybe Three_d_authenticated_info
+        , ordering_shopper_web_info :: Maybe Web_info
+        , ordering_shopper_ecp :: Maybe Ecp
+        , ordering_shopper_credit_card :: Maybe Credit_card
         }
         deriving (Eq,Show)
 instance SchemaType Ordering_shopper where
@@ -3393,26 +3393,26 @@ instance SchemaType Ordering_shopper where
         commit $ interior e $ return Ordering_shopper
             `apply` optional (elementShopper_id)
             `apply` optional (elementSeller_shopper_id)
-            `apply` optional (elementCredit_card)
-            `apply` optional (elementEcp)
             `apply` optional (elementInvoice_contact_info)
             `apply` optional (elementPaypal)
             `apply` optional (elementWire)
             `apply` optional (elementLocal_bank_transfer)
-            `apply` elementWeb_info
             `apply` optional (elementThree_d_authenticated_info)
+            `apply` optional (elementWeb_info)
+            `apply` optional (elementEcp)
+            `apply` optional (elementCredit_card)
     schemaTypeToXML s x@Ordering_shopper{} =
         toXMLElement s []
             [ maybe [] (elementToXMLShopper_id) $ ordering_shopper_shopper_id x
             , maybe [] (elementToXMLSeller_shopper_id) $ ordering_shopper_seller_shopper_id x
-            , maybe [] (elementToXMLCredit_card) $ ordering_shopper_credit_card x
-            , maybe [] (elementToXMLEcp) $ ordering_shopper_ecp x
             , maybe [] (elementToXMLInvoice_contact_info) $ ordering_shopper_invoice_contact_info x
             , maybe [] (elementToXMLPaypal) $ ordering_shopper_paypal x
             , maybe [] (elementToXMLWire) $ ordering_shopper_wire x
             , maybe [] (elementToXMLLocal_bank_transfer) $ ordering_shopper_local_bank_transfer x
-            , elementToXMLWeb_info $ ordering_shopper_web_info x
             , maybe [] (elementToXMLThree_d_authenticated_info) $ ordering_shopper_three_d_authenticated_info x
+            , maybe [] (elementToXMLWeb_info) $ ordering_shopper_web_info x
+            , maybe [] (elementToXMLEcp) $ ordering_shopper_ecp x
+            , maybe [] (elementToXMLCredit_card) $ ordering_shopper_credit_card x
             ]
  
 elementOrdering_shopper :: XMLParser Ordering_shopper
@@ -4844,57 +4844,74 @@ elementToXMLPassword :: Xsd.XsdString -> [Content ()]
 elementToXMLPassword = schemaTypeToXML "password"
  
 data Shopper_info = Shopper_info
-        { shopper_info_shopper_id :: Maybe Xs.Long
-        , shopper_info_seller_shopper_id :: Maybe Xsd.XsdString
-        , shopper_info_username :: [Xsd.XsdString]
-        , shopper_info_password :: [Xsd.XsdString]
-        , shopper_info_shopper_contact_info :: Maybe Shopper_contact_info
-        , shopper_info_shipping_contact_info :: Maybe Shipping_contact_info
-        , shopper_info_invoice_contacts_info :: [Invoice_contacts_info]
-        , shopper_info_payment_info :: Maybe Payment_info
-        , shopper_info_store_id :: Maybe Xs.Long
-        , shopper_info_vat_code :: Maybe Xsd.XsdString
-        , shopper_info_shopper_currency :: Maybe Xsd.XsdString
-        , shopper_info_locale :: Maybe Xsd.XsdString
-        , shopper_info_permitted_future_charges :: [Xsd.Boolean]
+        { shopper_info_choice0 :: [OneOf13 Xsd.XsdString Xs.Long Xsd.XsdString Xsd.XsdString [Xsd.XsdString] [Xsd.XsdString] Shopper_contact_info Shipping_contact_info [Invoice_contacts_info] Xs.Long Xsd.XsdString [Xsd.Boolean] Payment_info]
+          -- ^ Choice between:
+          --   
+          --   (1) shopper-currency
+          --   
+          --   (2) shopper-id
+          --   
+          --   (3) locale
+          --   
+          --   (4) seller-shopper-id
+          --   
+          --   (5) username
+          --   
+          --   (6) password
+          --   
+          --   (7) shopper-contact-info
+          --   
+          --   (8) shipping-contact-info
+          --   
+          --   (9) invoice-contacts-info
+          --   
+          --   (10) store-id
+          --   
+          --   (11) vat-code
+          --   
+          --   (12) permitted-future-charges
+          --   
+          --   (13) payment-info
         }
         deriving (Eq,Show)
 instance SchemaType Shopper_info where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Shopper_info
-            `apply` optional (elementShopper_id)
-            `apply` optional (elementSeller_shopper_id)
-            `apply` between (Occurs (Just 0) (Just 1))
-                            (elementUsername)
-            `apply` between (Occurs (Just 0) (Just 1))
-                            (elementPassword)
-            `apply` optional (elementShopper_contact_info)
-            `apply` optional (elementShipping_contact_info)
-            `apply` between (Occurs (Just 0) (Just 1))
-                            (elementInvoice_contacts_info)
-            `apply` optional (elementPayment_info)
-            `apply` optional (elementStore_id)
-            `apply` optional (elementVat_code)
-            `apply` optional (elementShopper_currency)
-            `apply` optional (elementLocale)
-            `apply` between (Occurs (Just 0) (Just 1))
-                            (elementPermitted_future_charges)
+            `apply` many1 (oneOf' [ ("Xsd.XsdString", fmap OneOf13 (elementShopper_currency))
+                                  , ("Xs.Long", fmap TwoOf13 (elementShopper_id))
+                                  , ("Xsd.XsdString", fmap ThreeOf13 (elementLocale))
+                                  , ("Xsd.XsdString", fmap FourOf13 (elementSeller_shopper_id))
+                                  , ("[Xsd.XsdString]", fmap FiveOf13 (between (Occurs (Just 1) (Just 1))
+                                                                               (elementUsername)))
+                                  , ("[Xsd.XsdString]", fmap SixOf13 (between (Occurs (Just 1) (Just 1))
+                                                                              (elementPassword)))
+                                  , ("Shopper_contact_info", fmap SevenOf13 (elementShopper_contact_info))
+                                  , ("Shipping_contact_info", fmap EightOf13 (elementShipping_contact_info))
+                                  , ("[Invoice_contacts_info]", fmap NineOf13 (between (Occurs (Just 1) (Just 1))
+                                                                                       (elementInvoice_contacts_info)))
+                                  , ("Xs.Long", fmap TenOf13 (elementStore_id))
+                                  , ("Xsd.XsdString", fmap ElevenOf13 (elementVat_code))
+                                  , ("[Xsd.Boolean]", fmap TwelveOf13 (between (Occurs (Just 1) (Just 1))
+                                                                               (elementPermitted_future_charges)))
+                                  , ("Payment_info", fmap ThirteenOf13 (elementPayment_info))
+                                  ])
     schemaTypeToXML s x@Shopper_info{} =
         toXMLElement s []
-            [ maybe [] (elementToXMLShopper_id) $ shopper_info_shopper_id x
-            , maybe [] (elementToXMLSeller_shopper_id) $ shopper_info_seller_shopper_id x
-            , concatMap (elementToXMLUsername) $ shopper_info_username x
-            , concatMap (elementToXMLPassword) $ shopper_info_password x
-            , maybe [] (elementToXMLShopper_contact_info) $ shopper_info_shopper_contact_info x
-            , maybe [] (elementToXMLShipping_contact_info) $ shopper_info_shipping_contact_info x
-            , concatMap (elementToXMLInvoice_contacts_info) $ shopper_info_invoice_contacts_info x
-            , maybe [] (elementToXMLPayment_info) $ shopper_info_payment_info x
-            , maybe [] (elementToXMLStore_id) $ shopper_info_store_id x
-            , maybe [] (elementToXMLVat_code) $ shopper_info_vat_code x
-            , maybe [] (elementToXMLShopper_currency) $ shopper_info_shopper_currency x
-            , maybe [] (elementToXMLLocale) $ shopper_info_locale x
-            , concatMap (elementToXMLPermitted_future_charges) $ shopper_info_permitted_future_charges x
+            [ concatMap (foldOneOf13  (elementToXMLShopper_currency)
+                                      (elementToXMLShopper_id)
+                                      (elementToXMLLocale)
+                                      (elementToXMLSeller_shopper_id)
+                                      (concatMap (elementToXMLUsername))
+                                      (concatMap (elementToXMLPassword))
+                                      (elementToXMLShopper_contact_info)
+                                      (elementToXMLShipping_contact_info)
+                                      (concatMap (elementToXMLInvoice_contacts_info))
+                                      (elementToXMLStore_id)
+                                      (elementToXMLVat_code)
+                                      (concatMap (elementToXMLPermitted_future_charges))
+                                      (elementToXMLPayment_info)
+                                     ) $ shopper_info_choice0 x
             ]
  
 elementShopper_info :: XMLParser Shopper_info
@@ -4958,8 +4975,8 @@ elementToXMLShopper_contact_info :: Shopper_contact_info -> [Content ()]
 elementToXMLShopper_contact_info = schemaTypeToXML "shopper-contact-info"
  
 data Shopper = Shopper
-        { shopper_shopper_info :: Shopper_info
-        , shopper_web_info :: [Web_info]
+        { shopper_web_info :: [Web_info]
+        , shopper_shopper_info :: Shopper_info
         , shopper_three_d_authenticated_info :: [Three_d_authenticated_info]
         }
         deriving (Eq,Show)
@@ -4967,15 +4984,15 @@ instance SchemaType Shopper where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Shopper
-            `apply` elementShopper_info
             `apply` between (Occurs (Just 0) (Just 1))
                             (elementWeb_info)
+            `apply` elementShopper_info
             `apply` between (Occurs (Just 0) (Just 1))
                             (elementThree_d_authenticated_info)
     schemaTypeToXML s x@Shopper{} =
         toXMLElement s []
-            [ elementToXMLShopper_info $ shopper_shopper_info x
-            , concatMap (elementToXMLWeb_info) $ shopper_web_info x
+            [ concatMap (elementToXMLWeb_info) $ shopper_web_info x
+            , elementToXMLShopper_info $ shopper_shopper_info x
             , concatMap (elementToXMLThree_d_authenticated_info) $ shopper_three_d_authenticated_info x
             ]
  

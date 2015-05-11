@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<subscription-charge>
+  <charge-info>
+    <charge-description>some text</charge-description>
+    <from-date>1/1/2013</from-date>
+    <to-date>31/12/2013</to-date>
+  </charge-info>
+  <charge-invoice-info>
+    <date-created>1/1/2013<date-created>
+    <invoice-id>123456</invoice-id>
+    <invoice-amount>100</invoice-amount>
+    <invoice-currency>USD</invoice-currency>
+  </charge-invoice-info>
+</subscription-charge>

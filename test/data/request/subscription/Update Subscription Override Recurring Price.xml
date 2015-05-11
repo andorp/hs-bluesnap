@@ -1,0 +1,14 @@
+<subscription xmlns="http://ws.plimus.com">
+  <status>A</status>
+  <underlying-sku-id>656565</underlying-sku-id>
+  <shopper-id>121212</shopper-id>
+  <override-recurring-charge>
+    <currency>GBP</currency>
+    <amount>124.99</amount>
+  </override-recurring-charge>
+  <next-charge-date>13-MAR-10</next-charge-date>
+  <credit-card>
+    <card-last-four-digits>1112</card-last-four-digits>
+    <card-type>VISA</card-type>
+  </credit-card>
+</subscription>

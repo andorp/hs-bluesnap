@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fulfillment xmlns="http://ws.plimus.com">
+  <sku-download-link>
+    <sku-id>151</sku-id>
+    <sku-name>my test product</sku-name>
+    <download-link>http://support.BlueSnap.com/jsp/download_app.jsp?contractId=151</download-link>
+  </sku-download-link>
+</fulfillment>

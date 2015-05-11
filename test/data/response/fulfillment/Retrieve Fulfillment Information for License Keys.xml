@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fulfillment xmlns="http://ws.plimus.com">
+  <sku-license>
+    <sku-id>151</sku-id>
+    <sku-name>my test product</sku-name>
+    <license-key>A1234567890</license-key>
+  </sku-license>
+</fulfillment>

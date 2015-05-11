@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item-price xmlns="http://ws.plimus.com">
+  <store-id>12700</store-id>
+  <quantity>1</quantity>
+  <unit-price>
+    <charge-price>
+      <charge-type>initial</charge-type>
+      <value>21.82</value>
+      <currency>EUR</currency>
+      <formatted-price>
+        <iso>EUR 21.82</iso>
+        <symbol>€21.82</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+    <charge-price>
+      <charge-type>recurring</charge-type>
+      <value>0.00</value>
+      <currency>EUR</currency>
+      <formatted-price>
+        <iso>EUR 0.00</iso>
+        <symbol>€0.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+  </unit-price>
+  <total-price>
+    <charge-price>
+      <charge-type>initial</charge-type>
+      <value>21.82</value>
+      <currency>EUR</currency>
+      <formatted-price>
+        <iso>EUR 21.82</iso>
+        <symbol>€21.82</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+    <charge-price>
+      <charge-type>recurring</charge-type>
+      <value>0.00</value>
+      <currency>EUR</currency>
+      <formatted-price>
+        <iso>EUR 0.00</iso>
+        <symbol>€0.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+  </total-price>
+  <total-price-with-tax>
+    <charge-price>
+      <charge-type>initial</charge-type>
+      <value>26.09</value>
+      <currency>EUR</currency>
+      <formatted-price>
+        <iso>EUR 26.09</iso>
+        <symbol>€26.09</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+    <charge-price>
+      <charge-type>recurring</charge-type>
+      <value>0.00</value>
+      <currency>EUR</currency>
+      <formatted-price>
+        <iso>EUR 0.00</iso>
+        <symbol>€0.00</symbol>
+      </formatted-price>
+      <tax-included>false</tax-included>
+    </charge-price>
+  </total-price-with-tax>
+  <tax>4.28</tax>
+  <tax-recurring>0.00</tax-recurring>
+  <tax-rate>19.6</tax-rate>
+  <country>fr</country>
+</item-price>

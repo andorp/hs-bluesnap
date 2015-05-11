@@ -384,7 +384,7 @@ elementToXMLCatalog_prices = schemaTypeToXML "catalog-prices"
  
 data Catalog_price = Catalog_price
         { catalog_price_base_price :: Maybe Xsd.Boolean
-        , catalog_price_currency :: Xsd.XsdString
+        , catalog_price_currency :: Maybe Xsd.XsdString
         , catalog_price_amount :: Xsd.Decimal
         }
         deriving (Eq,Show)
@@ -393,12 +393,12 @@ instance SchemaType Catalog_price where
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Catalog_price
             `apply` optional (elementBase_price)
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementAmount
     schemaTypeToXML s x@Catalog_price{} =
         toXMLElement s []
             [ maybe [] (elementToXMLBase_price) $ catalog_price_base_price x
-            , elementToXMLCurrency $ catalog_price_currency x
+            , maybe [] (elementToXMLCurrency) $ catalog_price_currency x
             , elementToXMLAmount $ catalog_price_amount x
             ]
  
@@ -662,7 +662,7 @@ elementToXMLBuynow1_url :: Xsd.XsdString -> [Content ()]
 elementToXMLBuynow1_url = schemaTypeToXML "buynow1-url"
  
 data Sku_initial_price = Sku_initial_price
-        { sku_initial_price_currency :: Xsd.XsdString
+        { sku_initial_price_currency :: Maybe Xsd.XsdString
         , sku_initial_price_amount :: Xsd.Decimal
         }
         deriving (Eq,Show)
@@ -670,11 +670,11 @@ instance SchemaType Sku_initial_price where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Sku_initial_price
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementAmount
     schemaTypeToXML s x@Sku_initial_price{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ sku_initial_price_currency x
+            [ maybe [] (elementToXMLCurrency) $ sku_initial_price_currency x
             , elementToXMLAmount $ sku_initial_price_amount x
             ]
  
@@ -684,7 +684,7 @@ elementToXMLSku_initial_price :: Sku_initial_price -> [Content ()]
 elementToXMLSku_initial_price = schemaTypeToXML "sku-initial-price"
  
 data Sku_recurring_price = Sku_recurring_price
-        { sku_recurring_price_currency :: Xsd.XsdString
+        { sku_recurring_price_currency :: Maybe Xsd.XsdString
         , sku_recurring_price_amount :: Xsd.Decimal
         }
         deriving (Eq,Show)
@@ -692,11 +692,11 @@ instance SchemaType Sku_recurring_price where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Sku_recurring_price
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementAmount
     schemaTypeToXML s x@Sku_recurring_price{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ sku_recurring_price_currency x
+            [ maybe [] (elementToXMLCurrency) $ sku_recurring_price_currency x
             , elementToXMLAmount $ sku_recurring_price_amount x
             ]
  
@@ -796,7 +796,7 @@ elementToXMLGrace_period_length :: Xsd.XsdString -> [Content ()]
 elementToXMLGrace_period_length = schemaTypeToXML "grace-period-length"
  
 data Plan_charge_amount_limit = Plan_charge_amount_limit
-        { plan_charge_amount_limit_currency :: Xsd.XsdString
+        { plan_charge_amount_limit_currency :: Maybe Xsd.XsdString
         , plan_charge_amount_limit_amount :: Xsd.Decimal
         }
         deriving (Eq,Show)
@@ -804,11 +804,11 @@ instance SchemaType Plan_charge_amount_limit where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Plan_charge_amount_limit
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementAmount
     schemaTypeToXML s x@Plan_charge_amount_limit{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ plan_charge_amount_limit_currency x
+            [ maybe [] (elementToXMLCurrency) $ plan_charge_amount_limit_currency x
             , elementToXMLAmount $ plan_charge_amount_limit_amount x
             ]
  
@@ -1479,7 +1479,7 @@ elementToXMLCoupon_display_name :: Xsd.XsdString -> [Content ()]
 elementToXMLCoupon_display_name = schemaTypeToXML "coupon-display-name"
  
 data Price_discount = Price_discount
-        { price_discount_currency :: Xsd.XsdString
+        { price_discount_currency :: Maybe Xsd.XsdString
         , price_discount_amount :: Xsd.Decimal
         }
         deriving (Eq,Show)
@@ -1487,11 +1487,11 @@ instance SchemaType Price_discount where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Price_discount
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementAmount
     schemaTypeToXML s x@Price_discount{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ price_discount_currency x
+            [ maybe [] (elementToXMLCurrency) $ price_discount_currency x
             , elementToXMLAmount $ price_discount_amount x
             ]
  
@@ -2289,8 +2289,8 @@ elementToXMLEcp_info :: Ecp_info -> [Content ()]
 elementToXMLEcp_info = schemaTypeToXML "ecp-info"
  
 data Ecp = Ecp
-        { ecp_account_number :: Xsd.XsdString
-        , ecp_routing_number :: Xsd.XsdString
+        { ecp_account_number :: Maybe Xsd.XsdString
+        , ecp_routing_number :: Maybe Xsd.XsdString
         , ecp_account_type :: Xsd.XsdString
         , ecp_public_account_number :: Xsd.XsdString
         , ecp_public_routing_number :: Xsd.XsdString
@@ -2300,15 +2300,15 @@ instance SchemaType Ecp where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Ecp
-            `apply` elementAccount_number
-            `apply` elementRouting_number
+            `apply` optional (elementAccount_number)
+            `apply` optional (elementRouting_number)
             `apply` elementAccount_type
             `apply` elementPublic_account_number
             `apply` elementPublic_routing_number
     schemaTypeToXML s x@Ecp{} =
         toXMLElement s []
-            [ elementToXMLAccount_number $ ecp_account_number x
-            , elementToXMLRouting_number $ ecp_routing_number x
+            [ maybe [] (elementToXMLAccount_number) $ ecp_account_number x
+            , maybe [] (elementToXMLRouting_number) $ ecp_routing_number x
             , elementToXMLAccount_type $ ecp_account_type x
             , elementToXMLPublic_account_number $ ecp_public_account_number x
             , elementToXMLPublic_routing_number $ ecp_public_routing_number x
@@ -2677,8 +2677,8 @@ elementToXMLTotal_price_with_tax = schemaTypeToXML "total-price-with-tax"
  
 data Charge_price = Charge_price
         { charge_price_charge_type :: Xsd.XsdString
-        , charge_price_value :: Xsd.Decimal
-        , charge_price_currency :: Xsd.XsdString
+        , charge_price_value :: Maybe Xsd.Decimal
+        , charge_price_currency :: Maybe Xsd.XsdString
         , charge_price_formatted_price :: Formatted_price
         , charge_price_tax_included :: Xsd.Boolean
         }
@@ -2688,15 +2688,15 @@ instance SchemaType Charge_price where
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Charge_price
             `apply` elementCharge_type
-            `apply` elementValue
-            `apply` elementCurrency
+            `apply` optional (elementValue)
+            `apply` optional (elementCurrency)
             `apply` elementFormatted_price
             `apply` elementTax_included
     schemaTypeToXML s x@Charge_price{} =
         toXMLElement s []
             [ elementToXMLCharge_type $ charge_price_charge_type x
-            , elementToXMLValue $ charge_price_value x
-            , elementToXMLCurrency $ charge_price_currency x
+            , maybe [] (elementToXMLValue) $ charge_price_value x
+            , maybe [] (elementToXMLCurrency) $ charge_price_currency x
             , elementToXMLFormatted_price $ charge_price_formatted_price x
             , elementToXMLTax_included $ charge_price_tax_included x
             ]
@@ -3378,12 +3378,12 @@ data Ordering_shopper = Ordering_shopper
         { ordering_shopper_shopper_id :: Maybe Xs.Long
         , ordering_shopper_seller_shopper_id :: Maybe Xsd.XsdString
         , ordering_shopper_credit_card :: Maybe Credit_card
+        , ordering_shopper_web_info :: Maybe Web_info
         , ordering_shopper_ecp :: Maybe Ecp
         , ordering_shopper_invoice_contact_info :: Maybe Invoice_contact_info
         , ordering_shopper_paypal :: Maybe Paypal
         , ordering_shopper_wire :: Maybe Wire
         , ordering_shopper_local_bank_transfer :: Maybe Local_bank_transfer
-        , ordering_shopper_web_info :: Maybe Web_info
         , ordering_shopper_three_d_authenticated_info :: Maybe Three_d_authenticated_info
         }
         deriving (Eq,Show)
@@ -3394,24 +3394,24 @@ instance SchemaType Ordering_shopper where
             `apply` optional (elementShopper_id)
             `apply` optional (elementSeller_shopper_id)
             `apply` optional (elementCredit_card)
+            `apply` optional (elementWeb_info)
             `apply` optional (elementEcp)
             `apply` optional (elementInvoice_contact_info)
             `apply` optional (elementPaypal)
             `apply` optional (elementWire)
             `apply` optional (elementLocal_bank_transfer)
-            `apply` optional (elementWeb_info)
             `apply` optional (elementThree_d_authenticated_info)
     schemaTypeToXML s x@Ordering_shopper{} =
         toXMLElement s []
             [ maybe [] (elementToXMLShopper_id) $ ordering_shopper_shopper_id x
             , maybe [] (elementToXMLSeller_shopper_id) $ ordering_shopper_seller_shopper_id x
             , maybe [] (elementToXMLCredit_card) $ ordering_shopper_credit_card x
+            , maybe [] (elementToXMLWeb_info) $ ordering_shopper_web_info x
             , maybe [] (elementToXMLEcp) $ ordering_shopper_ecp x
             , maybe [] (elementToXMLInvoice_contact_info) $ ordering_shopper_invoice_contact_info x
             , maybe [] (elementToXMLPaypal) $ ordering_shopper_paypal x
             , maybe [] (elementToXMLWire) $ ordering_shopper_wire x
             , maybe [] (elementToXMLLocal_bank_transfer) $ ordering_shopper_local_bank_transfer x
-            , maybe [] (elementToXMLWeb_info) $ ordering_shopper_web_info x
             , maybe [] (elementToXMLThree_d_authenticated_info) $ ordering_shopper_three_d_authenticated_info x
             ]
  
@@ -3538,11 +3538,11 @@ data Financial_transaction = Financial_transaction
         , financial_transaction_amount :: Xsd.Decimal
         , financial_transaction_tax :: Maybe Xsd.Decimal
         , financial_transaction_tax_rate :: Maybe Xsd.Decimal
-        , financial_transaction_currency :: Xsd.XsdString
+        , financial_transaction_currency :: Maybe Xsd.XsdString
         , financial_transaction_soft_descriptor :: Xsd.XsdString
         , financial_transaction_payment_method :: Xsd.XsdString
         , financial_transaction_target_balance :: Xsd.XsdString
-        , financial_transaction_credit_card :: Credit_card
+        , financial_transaction_credit_card :: Maybe Credit_card
         , financial_transaction_paypal_transaction_data :: Maybe Paypal_transaction_data
         , financial_transaction_ecp :: Maybe Ecp
         , financial_transaction_invoice_contact_info :: Invoice_contact_info
@@ -3559,11 +3559,11 @@ instance SchemaType Financial_transaction where
             `apply` elementAmount
             `apply` optional (elementTax)
             `apply` optional (elementTax_rate)
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementSoft_descriptor
             `apply` elementPayment_method
             `apply` elementTarget_balance
-            `apply` elementCredit_card
+            `apply` optional (elementCredit_card)
             `apply` optional (elementPaypal_transaction_data)
             `apply` optional (elementEcp)
             `apply` elementInvoice_contact_info
@@ -3576,11 +3576,11 @@ instance SchemaType Financial_transaction where
             , elementToXMLAmount $ financial_transaction_amount x
             , maybe [] (elementToXMLTax) $ financial_transaction_tax x
             , maybe [] (elementToXMLTax_rate) $ financial_transaction_tax_rate x
-            , elementToXMLCurrency $ financial_transaction_currency x
+            , maybe [] (elementToXMLCurrency) $ financial_transaction_currency x
             , elementToXMLSoft_descriptor $ financial_transaction_soft_descriptor x
             , elementToXMLPayment_method $ financial_transaction_payment_method x
             , elementToXMLTarget_balance $ financial_transaction_target_balance x
-            , elementToXMLCredit_card $ financial_transaction_credit_card x
+            , maybe [] (elementToXMLCredit_card) $ financial_transaction_credit_card x
             , maybe [] (elementToXMLPaypal_transaction_data) $ financial_transaction_paypal_transaction_data x
             , maybe [] (elementToXMLEcp) $ financial_transaction_ecp x
             , elementToXMLInvoice_contact_info $ financial_transaction_invoice_contact_info x
@@ -3838,7 +3838,7 @@ elementToXMLAffiliate_id = schemaTypeToXML "affiliate-id"
  
 data Expected_total_price = Expected_total_price
         { expected_total_price_amount :: Xsd.Decimal
-        , expected_total_price_currency :: Xsd.XsdString
+        , expected_total_price_currency :: Maybe Xsd.XsdString
         }
         deriving (Eq,Show)
 instance SchemaType Expected_total_price where
@@ -3846,11 +3846,11 @@ instance SchemaType Expected_total_price where
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Expected_total_price
             `apply` elementAmount
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
     schemaTypeToXML s x@Expected_total_price{} =
         toXMLElement s []
             [ elementToXMLAmount $ expected_total_price_amount x
-            , elementToXMLCurrency $ expected_total_price_currency x
+            , maybe [] (elementToXMLCurrency) $ expected_total_price_currency x
             ]
  
 elementExpected_total_price :: XMLParser Expected_total_price
@@ -4403,8 +4403,8 @@ elementToXMLSymbol :: Xsd.XsdString -> [Content ()]
 elementToXMLSymbol = schemaTypeToXML "symbol"
  
 data Price = Price
-        { price_value :: Xsd.Decimal
-        , price_currency :: Xsd.XsdString
+        { price_value :: Maybe Xsd.Decimal
+        , price_currency :: Maybe Xsd.XsdString
         , price_formatted_price :: Maybe Formatted_price
         }
         deriving (Eq,Show)
@@ -4412,13 +4412,13 @@ instance SchemaType Price where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Price
-            `apply` elementValue
-            `apply` elementCurrency
+            `apply` optional (elementValue)
+            `apply` optional (elementCurrency)
             `apply` optional (elementFormatted_price)
     schemaTypeToXML s x@Price{} =
         toXMLElement s []
-            [ elementToXMLValue $ price_value x
-            , elementToXMLCurrency $ price_currency x
+            [ maybe [] (elementToXMLValue) $ price_value x
+            , maybe [] (elementToXMLCurrency) $ price_currency x
             , maybe [] (elementToXMLFormatted_price) $ price_formatted_price x
             ]
  
@@ -4844,57 +4844,74 @@ elementToXMLPassword :: Xsd.XsdString -> [Content ()]
 elementToXMLPassword = schemaTypeToXML "password"
  
 data Shopper_info = Shopper_info
-        { shopper_info_shopper_id :: Maybe Xs.Long
-        , shopper_info_seller_shopper_id :: Maybe Xsd.XsdString
-        , shopper_info_username :: [Xsd.XsdString]
-        , shopper_info_password :: [Xsd.XsdString]
-        , shopper_info_shopper_contact_info :: Maybe Shopper_contact_info
-        , shopper_info_shipping_contact_info :: Maybe Shipping_contact_info
-        , shopper_info_invoice_contacts_info :: [Invoice_contacts_info]
-        , shopper_info_payment_info :: Maybe Payment_info
-        , shopper_info_store_id :: Maybe Xs.Long
-        , shopper_info_vat_code :: Maybe Xsd.XsdString
-        , shopper_info_shopper_currency :: Maybe Xsd.XsdString
-        , shopper_info_locale :: Maybe Xsd.XsdString
-        , shopper_info_permitted_future_charges :: [Xsd.Boolean]
+        { shopper_info_choice0 :: [OneOf13 Xsd.XsdString Xs.Long Xsd.XsdString Xsd.XsdString [Xsd.XsdString] [Xsd.XsdString] Shopper_contact_info Shipping_contact_info [Invoice_contacts_info] Xs.Long Xsd.XsdString [Xsd.Boolean] Payment_info]
+          -- ^ Choice between:
+          --   
+          --   (1) shopper-currency
+          --   
+          --   (2) shopper-id
+          --   
+          --   (3) locale
+          --   
+          --   (4) seller-shopper-id
+          --   
+          --   (5) username
+          --   
+          --   (6) password
+          --   
+          --   (7) shopper-contact-info
+          --   
+          --   (8) shipping-contact-info
+          --   
+          --   (9) invoice-contacts-info
+          --   
+          --   (10) store-id
+          --   
+          --   (11) vat-code
+          --   
+          --   (12) permitted-future-charges
+          --   
+          --   (13) payment-info
         }
         deriving (Eq,Show)
 instance SchemaType Shopper_info where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Shopper_info
-            `apply` optional (elementShopper_id)
-            `apply` optional (elementSeller_shopper_id)
-            `apply` between (Occurs (Just 0) (Just 1))
-                            (elementUsername)
-            `apply` between (Occurs (Just 0) (Just 1))
-                            (elementPassword)
-            `apply` optional (elementShopper_contact_info)
-            `apply` optional (elementShipping_contact_info)
-            `apply` between (Occurs (Just 0) (Just 1))
-                            (elementInvoice_contacts_info)
-            `apply` optional (elementPayment_info)
-            `apply` optional (elementStore_id)
-            `apply` optional (elementVat_code)
-            `apply` optional (elementShopper_currency)
-            `apply` optional (elementLocale)
-            `apply` between (Occurs (Just 0) (Just 1))
-                            (elementPermitted_future_charges)
+            `apply` many1 (oneOf' [ ("Xsd.XsdString", fmap OneOf13 (elementShopper_currency))
+                                  , ("Xs.Long", fmap TwoOf13 (elementShopper_id))
+                                  , ("Xsd.XsdString", fmap ThreeOf13 (elementLocale))
+                                  , ("Xsd.XsdString", fmap FourOf13 (elementSeller_shopper_id))
+                                  , ("[Xsd.XsdString]", fmap FiveOf13 (between (Occurs (Just 1) (Just 1))
+                                                                               (elementUsername)))
+                                  , ("[Xsd.XsdString]", fmap SixOf13 (between (Occurs (Just 1) (Just 1))
+                                                                              (elementPassword)))
+                                  , ("Shopper_contact_info", fmap SevenOf13 (elementShopper_contact_info))
+                                  , ("Shipping_contact_info", fmap EightOf13 (elementShipping_contact_info))
+                                  , ("[Invoice_contacts_info]", fmap NineOf13 (between (Occurs (Just 1) (Just 1))
+                                                                                       (elementInvoice_contacts_info)))
+                                  , ("Xs.Long", fmap TenOf13 (elementStore_id))
+                                  , ("Xsd.XsdString", fmap ElevenOf13 (elementVat_code))
+                                  , ("[Xsd.Boolean]", fmap TwelveOf13 (between (Occurs (Just 1) (Just 1))
+                                                                               (elementPermitted_future_charges)))
+                                  , ("Payment_info", fmap ThirteenOf13 (elementPayment_info))
+                                  ])
     schemaTypeToXML s x@Shopper_info{} =
         toXMLElement s []
-            [ maybe [] (elementToXMLShopper_id) $ shopper_info_shopper_id x
-            , maybe [] (elementToXMLSeller_shopper_id) $ shopper_info_seller_shopper_id x
-            , concatMap (elementToXMLUsername) $ shopper_info_username x
-            , concatMap (elementToXMLPassword) $ shopper_info_password x
-            , maybe [] (elementToXMLShopper_contact_info) $ shopper_info_shopper_contact_info x
-            , maybe [] (elementToXMLShipping_contact_info) $ shopper_info_shipping_contact_info x
-            , concatMap (elementToXMLInvoice_contacts_info) $ shopper_info_invoice_contacts_info x
-            , maybe [] (elementToXMLPayment_info) $ shopper_info_payment_info x
-            , maybe [] (elementToXMLStore_id) $ shopper_info_store_id x
-            , maybe [] (elementToXMLVat_code) $ shopper_info_vat_code x
-            , maybe [] (elementToXMLShopper_currency) $ shopper_info_shopper_currency x
-            , maybe [] (elementToXMLLocale) $ shopper_info_locale x
-            , concatMap (elementToXMLPermitted_future_charges) $ shopper_info_permitted_future_charges x
+            [ concatMap (foldOneOf13  (elementToXMLShopper_currency)
+                                      (elementToXMLShopper_id)
+                                      (elementToXMLLocale)
+                                      (elementToXMLSeller_shopper_id)
+                                      (concatMap (elementToXMLUsername))
+                                      (concatMap (elementToXMLPassword))
+                                      (elementToXMLShopper_contact_info)
+                                      (elementToXMLShipping_contact_info)
+                                      (concatMap (elementToXMLInvoice_contacts_info))
+                                      (elementToXMLStore_id)
+                                      (elementToXMLVat_code)
+                                      (concatMap (elementToXMLPermitted_future_charges))
+                                      (elementToXMLPayment_info)
+                                     ) $ shopper_info_choice0 x
             ]
  
 elementShopper_info :: XMLParser Shopper_info
@@ -5185,20 +5202,20 @@ elementToXMLCredit_cards_info :: Credit_cards_info -> [Content ()]
 elementToXMLCredit_cards_info = schemaTypeToXML "credit-cards-info"
  
 data Balance = Balance
-        { balance_currency :: Xsd.XsdString
-        , balance_value :: Xsd.Decimal
+        { balance_currency :: Maybe Xsd.XsdString
+        , balance_value :: Maybe Xsd.Decimal
         }
         deriving (Eq,Show)
 instance SchemaType Balance where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Balance
-            `apply` elementCurrency
-            `apply` elementValue
+            `apply` optional (elementCurrency)
+            `apply` optional (elementValue)
     schemaTypeToXML s x@Balance{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ balance_currency x
-            , elementToXMLValue $ balance_value x
+            [ maybe [] (elementToXMLCurrency) $ balance_currency x
+            , maybe [] (elementToXMLValue) $ balance_value x
             ]
  
 elementBalance :: XMLParser Balance
@@ -5397,7 +5414,7 @@ elementToXMLSku = schemaTypeToXML "sku"
 data Sku_charge_price = Sku_charge_price
         { sku_charge_price_charge_type :: Xsd.XsdString
         , sku_charge_price_amount :: Xsd.Decimal
-        , sku_charge_price_currency :: Xsd.XsdString
+        , sku_charge_price_currency :: Maybe Xsd.XsdString
         }
         deriving (Eq,Show)
 instance SchemaType Sku_charge_price where
@@ -5406,12 +5423,12 @@ instance SchemaType Sku_charge_price where
         commit $ interior e $ return Sku_charge_price
             `apply` elementCharge_type
             `apply` elementAmount
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
     schemaTypeToXML s x@Sku_charge_price{} =
         toXMLElement s []
             [ elementToXMLCharge_type $ sku_charge_price_charge_type x
             , elementToXMLAmount $ sku_charge_price_amount x
-            , elementToXMLCurrency $ sku_charge_price_currency x
+            , maybe [] (elementToXMLCurrency) $ sku_charge_price_currency x
             ]
  
 elementSku_charge_price :: XMLParser Sku_charge_price
@@ -5739,7 +5756,7 @@ elementToXMLUnderlying_sku_id :: Xs.Long -> [Content ()]
 elementToXMLUnderlying_sku_id = schemaTypeToXML "underlying-sku-id"
  
 data Recurring_charge = Recurring_charge
-        { recurring_charge_currency :: Xsd.XsdString
+        { recurring_charge_currency :: Maybe Xsd.XsdString
         , recurring_charge_amount :: Xsd.Decimal
         }
         deriving (Eq,Show)
@@ -5747,11 +5764,11 @@ instance SchemaType Recurring_charge where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Recurring_charge
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementAmount
     schemaTypeToXML s x@Recurring_charge{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ recurring_charge_currency x
+            [ maybe [] (elementToXMLCurrency) $ recurring_charge_currency x
             , elementToXMLAmount $ recurring_charge_amount x
             ]
  
@@ -5776,7 +5793,7 @@ elementToXMLNext_charge_date :: Xsd.XsdString -> [Content ()]
 elementToXMLNext_charge_date = schemaTypeToXML "next-charge-date"
  
 data Catalog_recurring_charge = Catalog_recurring_charge
-        { catalog_recurring_charge_currency :: Xsd.XsdString
+        { catalog_recurring_charge_currency :: Maybe Xsd.XsdString
         , catalog_recurring_charge_amount :: Xsd.Decimal
         }
         deriving (Eq,Show)
@@ -5784,11 +5801,11 @@ instance SchemaType Catalog_recurring_charge where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Catalog_recurring_charge
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementAmount
     schemaTypeToXML s x@Catalog_recurring_charge{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ catalog_recurring_charge_currency x
+            [ maybe [] (elementToXMLCurrency) $ catalog_recurring_charge_currency x
             , elementToXMLAmount $ catalog_recurring_charge_amount x
             ]
  
@@ -5798,7 +5815,7 @@ elementToXMLCatalog_recurring_charge :: Catalog_recurring_charge -> [Content ()]
 elementToXMLCatalog_recurring_charge = schemaTypeToXML "catalog-recurring-charge"
  
 data Override_recurring_charge = Override_recurring_charge
-        { override_recurring_charge_currency :: Xsd.XsdString
+        { override_recurring_charge_currency :: Maybe Xsd.XsdString
         , override_recurring_charge_amount :: Xsd.Decimal
         }
         deriving (Eq,Show)
@@ -5806,11 +5823,11 @@ instance SchemaType Override_recurring_charge where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Override_recurring_charge
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementAmount
     schemaTypeToXML s x@Override_recurring_charge{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ override_recurring_charge_currency x
+            [ maybe [] (elementToXMLCurrency) $ override_recurring_charge_currency x
             , elementToXMLAmount $ override_recurring_charge_amount x
             ]
  
@@ -6224,7 +6241,7 @@ elementToXMLCart_info :: Cart_info -> [Content ()]
 elementToXMLCart_info = schemaTypeToXML "cart-info"
  
 data Cart_params = Cart_params
-        { cart_params_currency :: Xsd.XsdString
+        { cart_params_currency :: Maybe Xsd.XsdString
         , cart_params_ip :: Xsd.XsdString
         , cart_params_country :: Xsd.XsdString
         , cart_params_state :: Xsd.XsdString
@@ -6235,14 +6252,14 @@ instance SchemaType Cart_params where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Cart_params
-            `apply` elementCurrency
+            `apply` optional (elementCurrency)
             `apply` elementIp
             `apply` elementCountry
             `apply` elementState
             `apply` elementStore_id
     schemaTypeToXML s x@Cart_params{} =
         toXMLElement s []
-            [ elementToXMLCurrency $ cart_params_currency x
+            [ maybe [] (elementToXMLCurrency) $ cart_params_currency x
             , elementToXMLIp $ cart_params_ip x
             , elementToXMLCountry $ cart_params_country x
             , elementToXMLState $ cart_params_state x

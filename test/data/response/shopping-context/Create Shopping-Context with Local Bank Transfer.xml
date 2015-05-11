@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shopping-context xmlns="http://ws.plimus.com">
+  <step>CREATED</step>
+  <buynow-sso-token>NV89Vqywfalx9F8uLjPXbGrvJKLF%2F%2FKxlyVvqR6YW4BmiATPxHcrJ6B3xNA%2BNuVfMhdl4RrsHPsq%2BXWL9LgYx6OBHhATgMRVUnDiBIGqPMhgS90SjyFtiURIi4RVq%2Bgi</buynow-sso-token>
+  <web-info>
+    <ip>62.219.121.253</ip>
+    <remote-host>bzq-219-121-253.static.bezeqint.net.reinventhosting.com</remote-host>
+    <user-agent>Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;
+    SV1; GTB6.3; .NET CLR 2.0.50727)</user-agent>
+    <accept-language>en-us</accept-language>
+  </web-info>
+  <order-details>
+    <order>
+      <order-id>3935575</order-id>
+      <ordering-shopper>
+        <shopper-id>19505364</shopper-id>
+      </ordering-shopper>
+      <transaction-payment-info>
+        <local-bank-transfer-info>
+          <swift-code>RABOUS66XXX</swift-code>
+          <payment-reference>410000130679</payment-reference>
+          <additional-reference>3935575</additional-reference>
+          <account-holder>Global Collect BV</account-holder>
+          <bank-name>Rabobank N.A.</bank-name>
+          <country-description>United States</country-description>
+          <status-id>800</status-id>
+          <bank-city>Ontario</bank-city>
+          <bank-account-number>0487369908</bank-account-number>
+        </local-bank-transfer-info>
+      </transaction-payment-info>
+      <cart>
+        <charged-currency>USD</charged-currency>
+        <cart-item>
+          <sku>
+            <sku-id>2180434</sku-id>
+            <sku-name>Example SKU</sku-name>
+          </sku>
+          <quantity>1</quantity>
+          <item-sub-total>20</item-sub-total>
+        </cart-item>
+        <tax>1.75</tax>
+        <tax-rate>8.75</tax-rate>
+        <total-cart-cost>21.75</total-cart-cost>
+      </cart>
+    </order>
+  </order-details>
+</shopping-context>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order xmlns="http://ws.plimus.com">
+  <order-id>3923051</order-id>
+  <ordering-shopper>
+    <shopper-id>19505364</shopper-id>
+    <seller-shopper-id>987654321</seller-shopper-id>
+  </ordering-shopper>
+  <cart>
+    <charged-currency>USD</charged-currency>
+    <cart-item>
+      <sku>
+        <sku-id>2178834</sku-id>
+        <sku-name>Laser Cannon subsc</sku-name>
+      </sku>
+      <quantity>1</quantity>
+      <url>https://sandbox.bluesnap.com/services/2/subscriptions/39469016</url>
+      <item-sub-total>5.00</item-sub-total>
+    </cart-item>
+    <tax>0.00</tax>
+    <tax-rate>0</tax-rate>
+    <total-cart-cost>5.00</total-cart-cost>
+  </cart>
+  <post-sale-info>
+    <invoices>
+      <invoice>
+        <invoice-id>38420528</invoice-id>
+        <url>http://sandbox.bluesnap.com/jsp/show_invoice.jsp?ref=A29AC4EA01AA732F</url>
+        <financial-transactions>
+          <financial-transaction>
+            <status>Approved</status>
+            <date-due>26-Aug-14</date-due>
+            <date-created>26-Aug-14</date-created>
+            <amount>5.00</amount>
+            <currency>USD</currency>
+            <soft-descriptor>BLS*DescTest</soft-descriptor>
+            <payment-method>Credit Card</payment-method>
+            <target-balance>PLIMUS_ACCOUNT</target-balance>
+            <credit-card>
+              <card-last-four-digits>1111</card-last-four-digits>
+              <card-type>Visa</card-type>
+              <expiration-month>9</expiration-month>
+              <expiration-year>2019</expiration-year>
+            </credit-card>
+            <paypal-transaction-data />
+            <invoice-contact-info>
+              <title>Mr.</title>
+              <first-name>John</first-name>
+              <last-name>Doe</last-name>
+              <email>jdoe@johndoeandsons.com</email>
+              <company-name>JohnDoeAndSons</company-name>
+              <address1>138 Market st</address1>
+              <city>San Francisco</city>
+              <state>CA</state>
+              <zip>756543</zip>
+              <country>us</country>
+              <phone>1413555666</phone>
+              <fax>1413555666789</fax>
+            </invoice-contact-info>
+            <skus>
+              <sku>
+                <sku-id>2178834</sku-id>
+              </sku>
+            </skus>
+          </financial-transaction>
+        </financial-transactions>
+      </invoice>
+      <invoice>
+        <invoice-id>38420530</invoice-id>
+        <url>http://sandbox.bluesnap.com/jsp/show_invoice.jsp?ref=F293E0FA74B9EED5</url>
+        <financial-transactions>
+          <financial-transaction>
+            <status>Approved</status>
+            <date-due>26-Aug-14</date-due>
+            <date-created>26-Aug-14</date-created>
+            <amount>-5.00</amount>
+            <currency>USD</currency>
+            <payment-method>Credit Card</payment-method>
+            <target-balance>PLIMUS_ACCOUNT</target-balance>
+            <credit-card>
+              <card-last-four-digits>1111</card-last-four-digits>
+              <card-type>Visa</card-type>
+              <expiration-month>9</expiration-month>
+              <expiration-year>2019</expiration-year>
+            </credit-card>
+            <paypal-transaction-data />
+            <invoice-contact-info>
+              <title>Mr.</title>
+              <first-name>John</first-name>
+              <last-name>Doe</last-name>
+              <email>jdoe@johndoeandsons.com</email>
+              <company-name>JohnDoeAndSons</company-name>
+              <address1>138 Market st</address1>
+              <city>San Francisco</city>
+              <state>CA</state>
+              <zip>756543</zip>
+              <country>us</country>
+              <phone>1413555666</phone>
+              <fax>1413555666789</fax>
+            </invoice-contact-info>
+            <skus>
+              <sku>
+                <sku-id>2178834</sku-id>
+                <sku-name>Laser Cannon subsc</sku-name>
+              </sku>
+            </skus>
+          </financial-transaction>
+        </financial-transactions>
+      </invoice>
+    </invoices>
+  </post-sale-info>
+  <fulfillment>
+    <license-keys />
+  </fulfillment>
+</order>
