@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<price xmlns="http://ws.plimus.com">
+  <value>72.72</value>
+  <currency>EUR</currency>
+  <formatted-price>
+    <iso>EUR 72.72</iso>
+    <symbol>€72.72</symbol>
+  </formatted-price>
+</price>

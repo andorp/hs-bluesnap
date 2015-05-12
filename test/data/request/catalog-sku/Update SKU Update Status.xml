@@ -1,0 +1,30 @@
+<catalog-sku xmlns="http://ws.plimus.com">
+   <sku-name>new CRUD API product Standard monthly SUB - base currency USD</sku-name>
+   <contract-name>Standard monthly SUB - base currency USD</contract-name>
+   <product-id>307634</product-id>
+   <sku-status>D</sku-status>
+   <sku-type>DIGITAL</sku-type>
+   <pricing-settings>
+      <charge-policy-type>STANDARD SUBSCRIPTION</charge-policy-type>
+      <charge-policy>
+         <recurring-period>
+            <catalog-prices>
+               <catalog-price>
+                  <base-price>true</base-price>
+                  <currency>USD</currency>
+                  <amount>10.00</amount>
+               </catalog-price>
+            </catalog-prices>
+            <period-frequency>DAILY</period-frequency>
+         </recurring-period>
+      </charge-policy>
+      <recurring-plan-settings>
+         <charge-upon-plan-change>false</charge-upon-plan-change>
+         <grace-period-length>99999</grace-period-length>
+         <plan-charge-amount-limit>
+            <currency>USD</currency>
+            <amount>10.00</amount>
+         </plan-charge-amount-limit>
+      </recurring-plan-settings>
+   </pricing-settings>
+</catalog-sku>

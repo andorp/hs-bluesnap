@@ -1,0 +1,20 @@
+<catalog-sku xmlns="http://ws.plimus.com">
+  <product-id>307634</product-id>
+  <sku-type>DIGITAL</sku-type>
+  <pricing-settings>
+    <charge-policy-type>STANDARD SUBSCRIPTION</charge-policy-type>
+    <charge-policy>
+      <recurring-period>
+        <catalog-prices>
+          <catalog-price>
+            <base-price>true</base-price>
+            <currency>USD</currency>
+            <amount>10.00</amount>
+          </catalog-price>
+        </catalog-prices>
+        <period-frequency>DAILY</period-frequency>
+      </recurring-period>
+    </charge-policy>
+    <recurring-plan-settings />
+  </pricing-settings>
+</catalog-sku>

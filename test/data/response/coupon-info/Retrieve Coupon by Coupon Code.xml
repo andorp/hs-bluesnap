@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coupon-info xmlns="http://ws.plimus.com">
+  <coupon-id>150400</coupon-id>
+  <product-owner-id>397248</product-owner-id>
+  <coupon-name>test-coupon2</coupon-name>
+  <coupon-display-name>test-coupon2</coupon-display-name>
+  <minimal-amount>10</minimal-amount>
+  <usage-count-limit>99999</usage-count-limit>
+  <coupon-effective-date>11-Aug-14</coupon-effective-date>
+  <one-per-email>true</one-per-email>
+  <apply-recurring-charges>false</apply-recurring-charges>
+  <coupon-discount-policy>
+    <coupon-discount-type>PERCENT</coupon-discount-type>
+    <coupon-percent>
+      <percent-discount>20</percent-discount>
+    </coupon-percent>
+  </coupon-discount-policy>
+  <coupon-rules>
+    <applied-skus-rule>EXCLUDE_ALL</applied-skus-rule>
+    <coupon-exceptions>
+      <sku-id>2180434</sku-id>
+    </coupon-exceptions>
+  </coupon-rules>
+  <coupon-codes-info>
+    <coupon-code-info>
+      <coupon-code>testcode2</coupon-code>
+      <coupon-code-usage>0</coupon-code-usage>
+    </coupon-code-info>
+  </coupon-codes-info>
+</coupon-info>

@@ -1,0 +1,18 @@
+<catalog-sku xmlns="http://ws.plimus.com">
+  <product-id>307634</product-id>
+  <sku-type>DIGITAL</sku-type>
+  <pricing-settings>
+    <charge-policy-type>ONE TIME PAYMENT</charge-policy-type>
+    <charge-policy>
+      <one-time-charge>
+        <catalog-prices>
+          <catalog-price>
+            <base-price>true</base-price>
+            <currency>USD</currency>
+            <amount>100.00</amount>
+          </catalog-price>
+        </catalog-prices>
+      </one-time-charge>
+    </charge-policy>
+  </pricing-settings>
+</catalog-sku>

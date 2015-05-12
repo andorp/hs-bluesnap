@@ -1,0 +1,15 @@
+<custom-parameter xmlns="http://ws.plimus.com">
+  <custom-param-title>Where did you hear about us?</custom-param-title>
+  <active>true</active>
+  <mandatory>true</mandatory>
+  <custom-param-settings>
+    <custom-param-type>FIXED SELECTION</custom-param-type>
+    <fixed-selection-type>
+      <drop-down-values>
+        <drop-down-value>a</drop-down-value>
+        <drop-down-value>b</drop-down-value>
+        <drop-down-value>c</drop-down-value>
+       </drop-down-values>
+    </fixed-selection-type>
+  </custom-param-settings>
+</custom-parameter>

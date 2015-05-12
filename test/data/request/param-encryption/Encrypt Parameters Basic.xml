@@ -1,0 +1,16 @@
+<param-encryption xmlns="http://ws.plimus.com">
+  <parameters>
+    <parameter>
+      <param-key>sku2125148</param-key>
+      <param-value>1</param-value>
+    </parameter>
+    <parameter>
+      <param-key>currency</param-key>
+      <param-value>USD</param-value>
+    </parameter>
+    <parameter>
+      <param-key>language</param-key>
+      <param-value>ENGLISH</param-value>
+    </parameter>
+  </parameters>
+</param-encryption>

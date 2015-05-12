@@ -1,0 +1,16 @@
+<param-encryption xmlns="http://ws.plimus.com">
+  <parameters>
+    <parameter>
+      <param-key>shopperId</param-key>
+      <param-value>19505364</param-value>
+    </parameter>
+    <parameter>
+      <param-key>expirationInMinutes</param-key>
+      <param-value>300</param-value>
+    </parameter>
+    <parameter>
+      <param-key>pageName</param-key>
+      <param-value>AUTO_LOGIN_PAGE</param-value>
+    </parameter>
+  </parameters>
+</param-encryption>

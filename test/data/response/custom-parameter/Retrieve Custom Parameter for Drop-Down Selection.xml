@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-parameter xmlns="http://ws.plimus.com">
+  <custom-param-title>Where did you hear about us?</custom-param-title>
+  <active>true</active>
+  <mandatory>true</mandatory>
+  <custom-param-settings>
+    <custom-param-type>FIXED SELECTION</custom-param-type>
+    <fixed-selection-type>
+      <drop-down-values>
+        <drop-down-value>a\nb\nc,d,e\n1\n2\n3-4-5\n</drop-down-value>
+      </drop-down-values>
+    </fixed-selection-type>
+    <visual-settings>
+      <title-alignment>LEFT</title-alignment>
+    </visual-settings>
+  </custom-param-settings>
+</custom-parameter>

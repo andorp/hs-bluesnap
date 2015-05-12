@@ -1,0 +1,47 @@
+<catalog-sku xmlns="http://ws.plimus.com">
+  <contract-name>API multi currencies - initial followed by sub after 14 days</contract-name>
+  <product-id>307634</product-id>
+  <sku-status>A</sku-status>
+  <sku-type>DIGITAL</sku-type>
+  <pricing-settings>
+    <charge-policy-type>STANDARD SUBSCRIPTION WITH INITIAL CHARGE</charge-policy-type>
+    <charge-policy>
+      <initial-period>
+        <catalog-prices>
+          <catalog-price>
+            <base-price>true</base-price>
+            <currency>USD</currency>
+            <amount>11.00</amount>
+          </catalog-price>
+        </catalog-prices>
+        <period-length>14</period-length>
+        <interval>DAYS</interval>
+      </initial-period>
+      <recurring-period>
+        <catalog-prices>
+          <catalog-price>
+            <base-price>true</base-price>
+            <currency>USD</currency>
+            <amount>8.00</amount>
+          </catalog-price>
+        </catalog-prices>
+        <period-frequency>MONTHLY</period-frequency>
+      </recurring-period>
+    </charge-policy>
+    <include-tax-in-price>false</include-tax-in-price>
+    <rounding-price-method>ROUNDING UP TO 0.50</rounding-price-method>
+    <recurring-plan-settings>
+      <charge-upon-plan-change>false</charge-upon-plan-change>
+      <grace-period-length>30</grace-period-length>
+      <plan-charge-amount-limit>
+        <currency>USD</currency>
+        <amount>100000.00</amount>
+      </plan-charge-amount-limit>
+      <plan-duration-period>3650</plan-duration-period>
+    </recurring-plan-settings>
+  </pricing-settings>
+  <sku-quantity-policy>
+    <allow-quantity-change>true</allow-quantity-change>
+    <minimum-quantity>1</minimum-quantity>
+  </sku-quantity-policy>
+</catalog-sku>

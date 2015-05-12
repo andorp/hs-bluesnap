@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog-sku xmlns="http://ws.plimus.com">
+  <sku-name>new CRUD API product Standard monthly SUB - base currency USD</sku-name>
+  <contract-name>Standard monthly SUB - base currency USD</contract-name>
+  <product-id>307634</product-id>
+  <sku-status>A</sku-status>
+  <sku-type>DIGITAL</sku-type>
+  <pricing-settings>
+    <charge-policy-type>STANDARD SUBSCRIPTION</charge-policy-type>
+    <charge-policy>
+      <recurring-period>
+        <catalog-prices>
+          <catalog-price>
+            <currency>EUR</currency>
+            <amount>16.00</amount>
+          </catalog-price>
+          <catalog-price>
+            <base-price>true</base-price>
+            <currency>USD</currency>
+            <amount>7.00</amount>
+          </catalog-price>
+          <catalog-price>
+            <currency>GBP</currency>
+            <amount>12.00</amount>
+          </catalog-price>
+        </catalog-prices>
+        <period-frequency>MONTHLY</period-frequency>
+      </recurring-period>
+    </charge-policy>
+    <include-tax-in-price>false</include-tax-in-price>
+    <rounding-price-method>ROUNDING UP TO 0.50</rounding-price-method>
+    <recurring-plan-settings>
+      <charge-upon-plan-change>false</charge-upon-plan-change>
+      <grace-period-length>30</grace-period-length>
+      <plan-charge-amount-limit>
+        <currency>USD</currency>
+        <amount>100000.00</amount>
+      </plan-charge-amount-limit>
+      <plan-duration-period>3650</plan-duration-period>
+    </recurring-plan-settings>
+  </pricing-settings>
+  <sku-buynow-urls>
+    <buynow-url>
+      <url-description>BuyNow Page</url-description>
+      <url>https://sandbox.bluesnap.com/jsp/buynow.jsp?contractId=2181234</url>
+    </buynow-url>
+  </sku-buynow-urls>
+  <sku-quantity-policy>
+    <allow-quantity-change>true</allow-quantity-change>
+    <minimum-quantity>1</minimum-quantity>
+  </sku-quantity-policy>
+  <collect-shipping-address>false</collect-shipping-address>
+  <sku-effective-dates>
+    <effective-from>07-Apr-13</effective-from>
+    <effective-till>05-Apr-23</effective-till>
+  </sku-effective-dates>
+  <sku-coupon-settings>
+    <sku-coupon-setting>ENABLE</sku-coupon-setting>
+  </sku-coupon-settings>
+  <sku-custom-parameters />
+</catalog-sku>

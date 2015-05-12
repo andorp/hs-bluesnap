@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<param-encryption xmlns="http://ws.plimus.com">
+  <parameters>
+    <parameter>
+      <param-key>thankyou.backtosellerurl</param-key>
+      <param-value>https%3A%2F%2Fmywebsite.com%2Fmypage%3Finv%3D!%7Binvoice.id%7D</param-value>
+    </parameter>
+  </parameters>
+</param-encryption>

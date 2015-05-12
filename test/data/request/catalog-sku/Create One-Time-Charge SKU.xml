@@ -1,0 +1,31 @@
+<catalog-sku xmlns="http://ws.plimus.com">
+  <contract-name>One time charge - USD base</contract-name>
+  <product-id>301918</product-id>
+  <sku-status>A</sku-status>
+  <sku-type>DIGITAL</sku-type>
+  <pricing-settings>
+    <charge-policy-type>ONE TIME PAYMENT</charge-policy-type>
+    <charge-policy>
+      <one-time-charge>
+        <catalog-prices>
+          <catalog-price>
+            <base-price>true</base-price>
+            <currency>USD</currency>
+            <amount>7.00</amount>
+          </catalog-price>
+        </catalog-prices>
+      </one-time-charge>
+    </charge-policy>
+    <include-tax-in-price>false</include-tax-in-price>
+    <rounding-price-method>ROUNDING UP TO 0.95</rounding-price-method>
+  </pricing-settings>
+  <sku-quantity-policy>
+    <allow-quantity-change>true</allow-quantity-change>
+    <minimum-quantity>1</minimum-quantity>
+  </sku-quantity-policy>
+  <collect-shipping-address>false</collect-shipping-address>
+  <sku-effective-dates>
+    <effective-from>07-Apr-13</effective-from>
+    <effective-till>05-Apr-23</effective-till>
+  </sku-effective-dates>
+</catalog-sku>

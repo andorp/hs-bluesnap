@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-parameter xmlns="http://ws.plimus.com">
+  <custom-param-title>MerchantSpecificId</custom-param-title>
+  <active>true</active>
+  <mandatory>true</mandatory>
+  <custom-param-settings>
+    <custom-param-type>MERCHANT PASSED VALUE</custom-param-type>
+    <merchant-value-type>
+      <minimum-length>7</minimum-length>
+      <maximum-length>2000</maximum-length>
+    </merchant-value-type>
+    <visual-settings>
+      <title-alignment>LEFT</title-alignment>
+    </visual-settings>
+  </custom-param-settings>
+</custom-parameter>

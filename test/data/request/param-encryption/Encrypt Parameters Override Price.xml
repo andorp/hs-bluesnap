@@ -1,0 +1,20 @@
+<param-encryption xmlns="http://ws.plimus.com">
+  <parameters>
+    <parameter>
+      <param-key>sku2129472priceamount</param-key>
+      <param-value>15</param-value>
+    </parameter>
+    <parameter>
+      <param-key>sku2129472pricecurrency</param-key>
+      <param-value>GBP</param-value>
+    </parameter>
+    <parameter>
+      <param-key>sku2129472recurringpriceamount</param-key>
+      <param-value>20</param-value>
+    </parameter>
+    <parameter>
+      <param-key>sku2129472recurringpricecurrency</param-key>
+      <param-value>GBP</param-value>
+    </parameter>
+  </parameters>
+</param-encryption>

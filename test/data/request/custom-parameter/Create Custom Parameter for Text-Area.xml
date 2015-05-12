@@ -1,0 +1,15 @@
+<custom-parameter xmlns="http://ws.plimus.com">
+  <custom-param-title>API Textarea</custom-param-title>
+  <active>true</active>
+  <mandatory>true</mandatory>
+  <custom-param-settings>
+    <custom-param-type>LONG-TEXT</custom-param-type>
+    <long-text-type>
+      <maximum-length>2000</maximum-length>
+      <minimum-length>7</minimum-length>
+    </long-text-type>
+    <visual-settings>
+      <title-alignment>LEFT</title-alignment>
+    </visual-settings>
+  </custom-param-settings>
+</custom-parameter>

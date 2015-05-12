@@ -37,3 +37,21 @@ testItemPriceRspParser = testXMLParser Response.elementItem_price
 
 testProductReqParser = testXMLParser Request.elementProduct
 testProductRspParser = testXMLParser Response.elementProduct
+
+testCatalogSkuReqParser = testXMLParser Request.elementCatalog_sku
+testCatalogSkuRspParser = testXMLParser Response.elementCatalog_sku
+
+testCustomParameterReqParser = testXMLParser Request.elementCustom_parameter
+testCustomParameterRspParser = testXMLParser Response.elementCustom_parameter
+
+testParamDecryptionReqParser = testXMLParser Request.elementParam_decryption
+testParamDecryptionRspParser = testXMLParser Response.elementParam_decryption
+
+testParamEncryptionReqParser = testXMLParser Request.elementParam_encryption
+testParamEncryptionRspParser = testXMLParser Response.elementParam_encryption
+
+testCouponInfoRspParer = testXMLParser Response.elementCoupon_info
+
+testPriceRspParser = testXMLParser Response.elementPrice
+
+testWebAuthenticationRspParser = testXMLParser Response.elementWeb_authentication
