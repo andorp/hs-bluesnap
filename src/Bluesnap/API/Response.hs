@@ -70,19 +70,19 @@ elementToXMLBatch_order = schemaTypeToXML "batch-order"
  
 data Catalog_sku = Catalog_sku
         { catalog_sku_sku_id :: Maybe Xs.Long
-        , catalog_sku_sku_name :: Xsd.XsdString
+        , catalog_sku_sku_name :: Maybe Xsd.XsdString
         , catalog_sku_contract_name :: Maybe Xsd.XsdString
         , catalog_sku_product_id :: Maybe Xs.Long
         , catalog_sku_sku_status :: Xsd.XsdString
         , catalog_sku_sku_type :: Xsd.XsdString
         , catalog_sku_pricing_settings :: Pricing_settings
-        , catalog_sku_sku_image :: Xsd.XsdString
-        , catalog_sku_sku_buynow_urls :: Sku_buynow_urls
+        , catalog_sku_sku_image :: Maybe Xsd.XsdString
+        , catalog_sku_sku_buynow_urls :: Maybe Sku_buynow_urls
         , catalog_sku_sku_quantity_policy :: Sku_quantity_policy
         , catalog_sku_collect_shipping_address :: Xsd.Boolean
         , catalog_sku_sku_effective_dates :: Sku_effective_dates
         , catalog_sku_sku_coupon_settings :: Sku_coupon_settings
-        , catalog_sku_sku_custom_parameters :: Sku_custom_parameters
+        , catalog_sku_sku_custom_parameters :: Maybe Sku_custom_parameters
         }
         deriving (Eq,Show)
 instance SchemaType Catalog_sku where
@@ -90,35 +90,35 @@ instance SchemaType Catalog_sku where
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Catalog_sku
             `apply` optional (elementSku_id)
-            `apply` elementSku_name
+            `apply` optional (elementSku_name)
             `apply` optional (elementContract_name)
             `apply` optional (elementProduct_id)
             `apply` elementSku_status
             `apply` elementSku_type
             `apply` elementPricing_settings
-            `apply` elementSku_image
-            `apply` elementSku_buynow_urls
+            `apply` optional (elementSku_image)
+            `apply` optional (elementSku_buynow_urls)
             `apply` elementSku_quantity_policy
             `apply` elementCollect_shipping_address
             `apply` elementSku_effective_dates
             `apply` elementSku_coupon_settings
-            `apply` elementSku_custom_parameters
+            `apply` optional (elementSku_custom_parameters)
     schemaTypeToXML s x@Catalog_sku{} =
         toXMLElement s []
             [ maybe [] (elementToXMLSku_id) $ catalog_sku_sku_id x
-            , elementToXMLSku_name $ catalog_sku_sku_name x
+            , maybe [] (elementToXMLSku_name) $ catalog_sku_sku_name x
             , maybe [] (elementToXMLContract_name) $ catalog_sku_contract_name x
             , maybe [] (elementToXMLProduct_id) $ catalog_sku_product_id x
             , elementToXMLSku_status $ catalog_sku_sku_status x
             , elementToXMLSku_type $ catalog_sku_sku_type x
             , elementToXMLPricing_settings $ catalog_sku_pricing_settings x
-            , elementToXMLSku_image $ catalog_sku_sku_image x
-            , elementToXMLSku_buynow_urls $ catalog_sku_sku_buynow_urls x
+            , maybe [] (elementToXMLSku_image) $ catalog_sku_sku_image x
+            , maybe [] (elementToXMLSku_buynow_urls) $ catalog_sku_sku_buynow_urls x
             , elementToXMLSku_quantity_policy $ catalog_sku_sku_quantity_policy x
             , elementToXMLCollect_shipping_address $ catalog_sku_collect_shipping_address x
             , elementToXMLSku_effective_dates $ catalog_sku_sku_effective_dates x
             , elementToXMLSku_coupon_settings $ catalog_sku_sku_coupon_settings x
-            , elementToXMLSku_custom_parameters $ catalog_sku_sku_custom_parameters x
+            , maybe [] (elementToXMLSku_custom_parameters) $ catalog_sku_sku_custom_parameters x
             ]
  
 elementCatalog_sku :: XMLParser Catalog_sku
@@ -131,7 +131,7 @@ data Pricing_settings = Pricing_settings
         , pricing_settings_charge_policy :: Charge_policy
         , pricing_settings_include_tax_in_price :: Xsd.Boolean
         , pricing_settings_rounding_price_method :: Xsd.XsdString
-        , pricing_settings_recurring_plan_settings :: Recurring_plan_settings
+        , pricing_settings_recurring_plan_settings :: Maybe Recurring_plan_settings
         }
         deriving (Eq,Show)
 instance SchemaType Pricing_settings where
@@ -142,14 +142,14 @@ instance SchemaType Pricing_settings where
             `apply` elementCharge_policy
             `apply` elementInclude_tax_in_price
             `apply` elementRounding_price_method
-            `apply` elementRecurring_plan_settings
+            `apply` optional (elementRecurring_plan_settings)
     schemaTypeToXML s x@Pricing_settings{} =
         toXMLElement s []
             [ elementToXMLCharge_policy_type $ pricing_settings_charge_policy_type x
             , elementToXMLCharge_policy $ pricing_settings_charge_policy x
             , elementToXMLInclude_tax_in_price $ pricing_settings_include_tax_in_price x
             , elementToXMLRounding_price_method $ pricing_settings_rounding_price_method x
-            , elementToXMLRecurring_plan_settings $ pricing_settings_recurring_plan_settings x
+            , maybe [] (elementToXMLRecurring_plan_settings) $ pricing_settings_recurring_plan_settings x
             ]
  
 elementPricing_settings :: XMLParser Pricing_settings
@@ -162,7 +162,7 @@ data Recurring_plan_settings = Recurring_plan_settings
         , recurring_plan_settings_grace_period_length :: Xsd.XsdString
         , recurring_plan_settings_plan_charge_amount_limit :: Plan_charge_amount_limit
         , recurring_plan_settings_plan_duration_period :: Xsd.Decimal
-        , recurring_plan_settings_plan_max_charge_number_limit :: Xsd.XsdString
+        , recurring_plan_settings_plan_max_charge_number_limit :: Maybe Xsd.XsdString
         }
         deriving (Eq,Show)
 instance SchemaType Recurring_plan_settings where
@@ -173,14 +173,14 @@ instance SchemaType Recurring_plan_settings where
             `apply` elementGrace_period_length
             `apply` elementPlan_charge_amount_limit
             `apply` elementPlan_duration_period
-            `apply` elementPlan_max_charge_number_limit
+            `apply` optional (elementPlan_max_charge_number_limit)
     schemaTypeToXML s x@Recurring_plan_settings{} =
         toXMLElement s []
             [ elementToXMLCharge_upon_plan_change $ recurring_plan_settings_charge_upon_plan_change x
             , elementToXMLGrace_period_length $ recurring_plan_settings_grace_period_length x
             , elementToXMLPlan_charge_amount_limit $ recurring_plan_settings_plan_charge_amount_limit x
             , elementToXMLPlan_duration_period $ recurring_plan_settings_plan_duration_period x
-            , elementToXMLPlan_max_charge_number_limit $ recurring_plan_settings_plan_max_charge_number_limit x
+            , maybe [] (elementToXMLPlan_max_charge_number_limit) $ recurring_plan_settings_plan_max_charge_number_limit x
             ]
  
 elementRecurring_plan_settings :: XMLParser Recurring_plan_settings
@@ -189,26 +189,26 @@ elementToXMLRecurring_plan_settings :: Recurring_plan_settings -> [Content ()]
 elementToXMLRecurring_plan_settings = schemaTypeToXML "recurring-plan-settings"
  
 data Charge_policy = Charge_policy
-        { charge_policy_free_trial :: Free_trial
-        , charge_policy_one_time_charge :: One_time_charge
-        , charge_policy_initial_period :: Initial_period
-        , charge_policy_recurring_period :: Recurring_period
+        { charge_policy_free_trial :: Maybe Free_trial
+        , charge_policy_one_time_charge :: Maybe One_time_charge
+        , charge_policy_initial_period :: Maybe Initial_period
+        , charge_policy_recurring_period :: Maybe Recurring_period
         }
         deriving (Eq,Show)
 instance SchemaType Charge_policy where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Charge_policy
-            `apply` elementFree_trial
-            `apply` elementOne_time_charge
-            `apply` elementInitial_period
-            `apply` elementRecurring_period
+            `apply` optional (elementFree_trial)
+            `apply` optional (elementOne_time_charge)
+            `apply` optional (elementInitial_period)
+            `apply` optional (elementRecurring_period)
     schemaTypeToXML s x@Charge_policy{} =
         toXMLElement s []
-            [ elementToXMLFree_trial $ charge_policy_free_trial x
-            , elementToXMLOne_time_charge $ charge_policy_one_time_charge x
-            , elementToXMLInitial_period $ charge_policy_initial_period x
-            , elementToXMLRecurring_period $ charge_policy_recurring_period x
+            [ maybe [] (elementToXMLFree_trial) $ charge_policy_free_trial x
+            , maybe [] (elementToXMLOne_time_charge) $ charge_policy_one_time_charge x
+            , maybe [] (elementToXMLInitial_period) $ charge_policy_initial_period x
+            , maybe [] (elementToXMLRecurring_period) $ charge_policy_recurring_period x
             ]
  
 elementCharge_policy :: XMLParser Charge_policy
@@ -1924,10 +1924,10 @@ elementToXMLCustom_parameter = schemaTypeToXML "custom-parameter"
  
 data Custom_param_settings = Custom_param_settings
         { custom_param_settings_custom_param_type :: Xsd.XsdString
-        , custom_param_settings_short_text_type :: Short_text_type
-        , custom_param_settings_long_text_type :: Long_text_type
-        , custom_param_settings_fixed_selection_type :: Fixed_selection_type
-        , custom_param_settings_merchant_value_type :: Merchant_value_type
+        , custom_param_settings_short_text_type :: Maybe Short_text_type
+        , custom_param_settings_long_text_type :: Maybe Long_text_type
+        , custom_param_settings_fixed_selection_type :: Maybe Fixed_selection_type
+        , custom_param_settings_merchant_value_type :: Maybe Merchant_value_type
         , custom_param_settings_visual_settings :: Visual_settings
         }
         deriving (Eq,Show)
@@ -1936,18 +1936,18 @@ instance SchemaType Custom_param_settings where
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Custom_param_settings
             `apply` elementCustom_param_type
-            `apply` elementShort_text_type
-            `apply` elementLong_text_type
-            `apply` elementFixed_selection_type
-            `apply` elementMerchant_value_type
+            `apply` optional (elementShort_text_type)
+            `apply` optional (elementLong_text_type)
+            `apply` optional (elementFixed_selection_type)
+            `apply` optional (elementMerchant_value_type)
             `apply` elementVisual_settings
     schemaTypeToXML s x@Custom_param_settings{} =
         toXMLElement s []
             [ elementToXMLCustom_param_type $ custom_param_settings_custom_param_type x
-            , elementToXMLShort_text_type $ custom_param_settings_short_text_type x
-            , elementToXMLLong_text_type $ custom_param_settings_long_text_type x
-            , elementToXMLFixed_selection_type $ custom_param_settings_fixed_selection_type x
-            , elementToXMLMerchant_value_type $ custom_param_settings_merchant_value_type x
+            , maybe [] (elementToXMLShort_text_type) $ custom_param_settings_short_text_type x
+            , maybe [] (elementToXMLLong_text_type) $ custom_param_settings_long_text_type x
+            , maybe [] (elementToXMLFixed_selection_type) $ custom_param_settings_fixed_selection_type x
+            , maybe [] (elementToXMLMerchant_value_type) $ custom_param_settings_merchant_value_type x
             , elementToXMLVisual_settings $ custom_param_settings_visual_settings x
             ]
  
@@ -2484,7 +2484,9 @@ elementToXMLDownload_links :: Download_links -> [Content ()]
 elementToXMLDownload_links = schemaTypeToXML "download-links"
  
 data Fulfillment = Fulfillment
-        { fulfillment_license_keys :: [License_keys]
+        { fulfillment_sku_license :: [Sku_license]
+        , fulfillment_sku_download_link :: [Sku_download_link]
+        , fulfillment_license_keys :: [License_keys]
         , fulfillment_download_links :: [Download_links]
         }
         deriving (Eq,Show)
@@ -2493,12 +2495,18 @@ instance SchemaType Fulfillment where
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Fulfillment
             `apply` between (Occurs (Just 0) (Just 1))
+                            (elementSku_license)
+            `apply` between (Occurs (Just 0) (Just 1))
+                            (elementSku_download_link)
+            `apply` between (Occurs (Just 0) (Just 1))
                             (elementLicense_keys)
             `apply` between (Occurs (Just 0) (Just 1))
                             (elementDownload_links)
     schemaTypeToXML s x@Fulfillment{} =
         toXMLElement s []
-            [ concatMap (elementToXMLLicense_keys) $ fulfillment_license_keys x
+            [ concatMap (elementToXMLSku_license) $ fulfillment_sku_license x
+            , concatMap (elementToXMLSku_download_link) $ fulfillment_sku_download_link x
+            , concatMap (elementToXMLLicense_keys) $ fulfillment_license_keys x
             , concatMap (elementToXMLDownload_links) $ fulfillment_download_links x
             ]
  
@@ -2581,8 +2589,8 @@ data Item_price = Item_price
         , item_price_tax :: Xsd.Decimal
         , item_price_tax_recurring :: Maybe Xsd.Decimal
         , item_price_tax_rate :: Xsd.Decimal
-        , item_price_country :: Xsd.XsdString
-        , item_price_state :: Xsd.XsdString
+        , item_price_country :: Maybe Xsd.XsdString
+        , item_price_state :: Maybe Xsd.XsdString
         }
         deriving (Eq,Show)
 instance SchemaType Item_price where
@@ -2597,8 +2605,8 @@ instance SchemaType Item_price where
             `apply` elementTax
             `apply` optional (elementTax_recurring)
             `apply` elementTax_rate
-            `apply` elementCountry
-            `apply` elementState
+            `apply` optional (elementCountry)
+            `apply` optional (elementState)
     schemaTypeToXML s x@Item_price{} =
         toXMLElement s []
             [ elementToXMLStore_id $ item_price_store_id x
@@ -2609,8 +2617,8 @@ instance SchemaType Item_price where
             , elementToXMLTax $ item_price_tax x
             , maybe [] (elementToXMLTax_recurring) $ item_price_tax_recurring x
             , elementToXMLTax_rate $ item_price_tax_rate x
-            , elementToXMLCountry $ item_price_country x
-            , elementToXMLState $ item_price_state x
+            , maybe [] (elementToXMLCountry) $ item_price_country x
+            , maybe [] (elementToXMLState) $ item_price_state x
             ]
  
 elementItem_price :: XMLParser Item_price
@@ -2727,7 +2735,7 @@ data Local_bank_transfer_info = Local_bank_transfer_info
         , local_bank_transfer_info_additional_reference :: Xsd.XsdString
         , local_bank_transfer_info_account_holder :: Xsd.XsdString
         , local_bank_transfer_info_bank_name :: Xsd.XsdString
-        , local_bank_transfer_info_iban :: Xsd.XsdString
+        , local_bank_transfer_info_iban :: Maybe Xsd.XsdString
         , local_bank_transfer_info_country_description :: Xsd.XsdString
         , local_bank_transfer_info_status_id :: Maybe Xs.Int
         , local_bank_transfer_info_bank_city :: Xsd.XsdString
@@ -2743,7 +2751,7 @@ instance SchemaType Local_bank_transfer_info where
             `apply` elementAdditional_reference
             `apply` elementAccount_holder
             `apply` elementBank_name
-            `apply` elementIban
+            `apply` optional (elementIban)
             `apply` elementCountry_description
             `apply` optional (elementStatus_id)
             `apply` elementBank_city
@@ -2755,7 +2763,7 @@ instance SchemaType Local_bank_transfer_info where
             , elementToXMLAdditional_reference $ local_bank_transfer_info_additional_reference x
             , elementToXMLAccount_holder $ local_bank_transfer_info_account_holder x
             , elementToXMLBank_name $ local_bank_transfer_info_bank_name x
-            , elementToXMLIban $ local_bank_transfer_info_iban x
+            , maybe [] (elementToXMLIban) $ local_bank_transfer_info_iban x
             , elementToXMLCountry_description $ local_bank_transfer_info_country_description x
             , maybe [] (elementToXMLStatus_id) $ local_bank_transfer_info_status_id x
             , elementToXMLBank_city $ local_bank_transfer_info_bank_city x
@@ -3539,8 +3547,8 @@ data Financial_transaction = Financial_transaction
         , financial_transaction_tax :: Maybe Xsd.Decimal
         , financial_transaction_tax_rate :: Maybe Xsd.Decimal
         , financial_transaction_currency :: Maybe Xsd.XsdString
-        , financial_transaction_soft_descriptor :: Xsd.XsdString
-        , financial_transaction_payment_method :: Xsd.XsdString
+        , financial_transaction_soft_descriptor :: Maybe Xsd.XsdString
+        , financial_transaction_payment_method :: Maybe Xsd.XsdString
         , financial_transaction_target_balance :: Xsd.XsdString
         , financial_transaction_credit_card :: Maybe Credit_card
         , financial_transaction_paypal_transaction_data :: Maybe Paypal_transaction_data
@@ -3560,8 +3568,8 @@ instance SchemaType Financial_transaction where
             `apply` optional (elementTax)
             `apply` optional (elementTax_rate)
             `apply` optional (elementCurrency)
-            `apply` elementSoft_descriptor
-            `apply` elementPayment_method
+            `apply` optional (elementSoft_descriptor)
+            `apply` optional (elementPayment_method)
             `apply` elementTarget_balance
             `apply` optional (elementCredit_card)
             `apply` optional (elementPaypal_transaction_data)
@@ -3577,8 +3585,8 @@ instance SchemaType Financial_transaction where
             , maybe [] (elementToXMLTax) $ financial_transaction_tax x
             , maybe [] (elementToXMLTax_rate) $ financial_transaction_tax_rate x
             , maybe [] (elementToXMLCurrency) $ financial_transaction_currency x
-            , elementToXMLSoft_descriptor $ financial_transaction_soft_descriptor x
-            , elementToXMLPayment_method $ financial_transaction_payment_method x
+            , maybe [] (elementToXMLSoft_descriptor) $ financial_transaction_soft_descriptor x
+            , maybe [] (elementToXMLPayment_method) $ financial_transaction_payment_method x
             , elementToXMLTarget_balance $ financial_transaction_target_balance x
             , maybe [] (elementToXMLCredit_card) $ financial_transaction_credit_card x
             , maybe [] (elementToXMLPaypal_transaction_data) $ financial_transaction_paypal_transaction_data x
@@ -4501,7 +4509,7 @@ data Product = Product
         , product_product_short_description :: Xsd.XsdString
         , product_product_long_description :: Xsd.XsdString
         , product_product_info_url :: Xsd.XsdString
-        , product_product_image :: Xsd.XsdString
+        , product_product_image :: Maybe Xsd.XsdString
         , product_product_merchant_descriptor :: Xsd.XsdString
         , product_product_support_email :: Xsd.XsdString
         , product_product_skus :: Product_skus
@@ -4517,7 +4525,7 @@ instance SchemaType Product where
             `apply` elementProduct_short_description
             `apply` elementProduct_long_description
             `apply` elementProduct_info_url
-            `apply` elementProduct_image
+            `apply` optional (elementProduct_image)
             `apply` elementProduct_merchant_descriptor
             `apply` elementProduct_support_email
             `apply` elementProduct_skus
@@ -4529,7 +4537,7 @@ instance SchemaType Product where
             , elementToXMLProduct_short_description $ product_product_short_description x
             , elementToXMLProduct_long_description $ product_product_long_description x
             , elementToXMLProduct_info_url $ product_product_info_url x
-            , elementToXMLProduct_image $ product_product_image x
+            , maybe [] (elementToXMLProduct_image) $ product_product_image x
             , elementToXMLProduct_merchant_descriptor $ product_product_merchant_descriptor x
             , elementToXMLProduct_support_email $ product_product_support_email x
             , elementToXMLProduct_skus $ product_product_skus x
@@ -5525,7 +5533,7 @@ elementToXMLSubscription_charge :: Subscription_charge -> [Content ()]
 elementToXMLSubscription_charge = schemaTypeToXML "subscription-charge"
  
 data Charge_info = Charge_info
-        { charge_info_charge_description :: Xsd.XsdString
+        { charge_info_charge_description :: Maybe Xsd.XsdString
         , charge_info_from_date :: Maybe Xsd.XsdString
         , charge_info_to_date :: Maybe Xsd.XsdString
         }
@@ -5534,12 +5542,12 @@ instance SchemaType Charge_info where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
         commit $ interior e $ return Charge_info
-            `apply` elementCharge_description
+            `apply` optional (elementCharge_description)
             `apply` optional (elementFrom_date)
             `apply` optional (elementTo_date)
     schemaTypeToXML s x@Charge_info{} =
         toXMLElement s []
-            [ elementToXMLCharge_description $ charge_info_charge_description x
+            [ maybe [] (elementToXMLCharge_description) $ charge_info_charge_description x
             , maybe [] (elementToXMLFrom_date) $ charge_info_from_date x
             , maybe [] (elementToXMLTo_date) $ charge_info_to_date x
             ]
@@ -5667,7 +5675,7 @@ data Subscription = Subscription
         , subscription_override_recurring_charge :: Maybe Override_recurring_charge
         , subscription_coupon :: Maybe Xsd.XsdString
         , subscription_charge_frequency :: Maybe Xsd.XsdString
-        , subscription_next_charge_date :: Xsd.XsdString
+        , subscription_next_charge_date :: Maybe Xsd.XsdString
         , subscription_manual_recurring_info :: Maybe Manual_recurring_info
         , subscription_auto_renew :: Maybe Xsd.Boolean
         , subscription_last_charge_result :: Maybe Last_charge_result
@@ -5692,7 +5700,7 @@ instance SchemaType Subscription where
             `apply` optional (elementOverride_recurring_charge)
             `apply` optional (elementCoupon)
             `apply` optional (elementCharge_frequency)
-            `apply` elementNext_charge_date
+            `apply` optional (elementNext_charge_date)
             `apply` optional (elementManual_recurring_info)
             `apply` optional (elementAuto_renew)
             `apply` optional (elementLast_charge_result)
@@ -5713,7 +5721,7 @@ instance SchemaType Subscription where
             , maybe [] (elementToXMLOverride_recurring_charge) $ subscription_override_recurring_charge x
             , maybe [] (elementToXMLCoupon) $ subscription_coupon x
             , maybe [] (elementToXMLCharge_frequency) $ subscription_charge_frequency x
-            , elementToXMLNext_charge_date $ subscription_next_charge_date x
+            , maybe [] (elementToXMLNext_charge_date) $ subscription_next_charge_date x
             , maybe [] (elementToXMLManual_recurring_info) $ subscription_manual_recurring_info x
             , maybe [] (elementToXMLAuto_renew) $ subscription_auto_renew x
             , maybe [] (elementToXMLLast_charge_result) $ subscription_last_charge_result x
@@ -6243,8 +6251,8 @@ elementToXMLCart_info = schemaTypeToXML "cart-info"
 data Cart_params = Cart_params
         { cart_params_currency :: Maybe Xsd.XsdString
         , cart_params_ip :: Xsd.XsdString
-        , cart_params_country :: Xsd.XsdString
-        , cart_params_state :: Xsd.XsdString
+        , cart_params_country :: Maybe Xsd.XsdString
+        , cart_params_state :: Maybe Xsd.XsdString
         , cart_params_store_id :: Xs.Long
         }
         deriving (Eq,Show)
@@ -6254,15 +6262,15 @@ instance SchemaType Cart_params where
         commit $ interior e $ return Cart_params
             `apply` optional (elementCurrency)
             `apply` elementIp
-            `apply` elementCountry
-            `apply` elementState
+            `apply` optional (elementCountry)
+            `apply` optional (elementState)
             `apply` elementStore_id
     schemaTypeToXML s x@Cart_params{} =
         toXMLElement s []
             [ maybe [] (elementToXMLCurrency) $ cart_params_currency x
             , elementToXMLIp $ cart_params_ip x
-            , elementToXMLCountry $ cart_params_country x
-            , elementToXMLState $ cart_params_state x
+            , maybe [] (elementToXMLCountry) $ cart_params_country x
+            , maybe [] (elementToXMLState) $ cart_params_state x
             , elementToXMLStore_id $ cart_params_store_id x
             ]
  

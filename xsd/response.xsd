@@ -26,7 +26,7 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="sku-id" minOccurs="0"/>
-				<xs:element ref="sku-name" />
+				<xs:element ref="sku-name" minOccurs="0"/>
 				<!-- In the future, the contact name should be deprecated once we deprecate the product WS - we will have only SKUs -->
 				<xs:element ref="contract-name" minOccurs="0"/>
 				<!-- In the future, the product id should be deprecated once we deprecate the product WS - we will have only SKUs -->
@@ -34,13 +34,13 @@
 				<xs:element ref="sku-status" />
 				<xs:element ref="sku-type" />
 				<xs:element ref="pricing-settings" />
-				<xs:element ref="sku-image" />
-				<xs:element ref="sku-buynow-urls" />
+				<xs:element ref="sku-image" minOccurs="0"/>
+				<xs:element ref="sku-buynow-urls" minOccurs="0"/>
 				<xs:element ref="sku-quantity-policy" />
 				<xs:element ref="collect-shipping-address" />
 				<xs:element ref="sku-effective-dates" />
 				<xs:element ref="sku-coupon-settings" />
-				<xs:element ref="sku-custom-parameters" />
+				<xs:element ref="sku-custom-parameters" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -51,7 +51,7 @@
 				<xs:element ref="charge-policy" />
 				<xs:element ref="include-tax-in-price" />
 				<xs:element ref="rounding-price-method" />
-				<xs:element ref="recurring-plan-settings" />
+				<xs:element ref="recurring-plan-settings" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -62,17 +62,17 @@
 				<xs:element ref="grace-period-length" />
 				<xs:element ref="plan-charge-amount-limit" />
 				<xs:element ref="plan-duration-period" />
-				<xs:element ref="plan-max-charge-number-limit" />
+				<xs:element ref="plan-max-charge-number-limit" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="charge-policy">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="free-trial" />
-				<xs:element ref="one-time-charge" />
-				<xs:element ref="initial-period"  />
-				<xs:element ref="recurring-period"  />
+				<xs:element ref="free-trial" minOccurs="0"/>
+				<xs:element ref="one-time-charge" minOccurs="0"/>
+				<xs:element ref="initial-period" minOccurs="0"/>
+				<xs:element ref="recurring-period" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -672,11 +672,11 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="custom-param-type" />
-				<xs:element ref="short-text-type" />
-				<xs:element ref="long-text-type" />
+				<xs:element ref="short-text-type" minOccurs="0"/>
+				<xs:element ref="long-text-type" minOccurs="0"/>
 <!-- 				<xs:element ref="boolean-type" /> -->
- 				<xs:element ref="fixed-selection-type" />
-				<xs:element ref="merchant-value-type" />
+ 				<xs:element ref="fixed-selection-type" minOccurs="0"/>
+				<xs:element ref="merchant-value-type" minOccurs="0"/>
 <!-- 				<xs:element ref="read-only-type" /> -->
 				<xs:element ref="visual-settings" />
 			</xs:sequence>
@@ -877,6 +877,8 @@
 	<xs:element name="fulfillment">
 		<xs:complexType>
 			<xs:sequence>
+				<xs:element ref="sku-license" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="sku-download-link" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="license-keys" minOccurs="0" maxOccurs="1"/>
 				<xs:element ref="download-links" minOccurs="0" maxOccurs="1"/>
 			</xs:sequence>
@@ -914,8 +916,8 @@
 				<xs:element ref="tax" />
 				<xs:element ref="tax-recurring" minOccurs="0"/>
 				<xs:element ref="tax-rate" />
-				<xs:element ref="country" />
-				<xs:element ref="state" />
+				<xs:element ref="country" minOccurs="0"/>
+				<xs:element ref="state" minOccurs="0"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -967,11 +969,11 @@
 				<xs:element ref="additional-reference" />
 				<xs:element ref="account-holder" />
 				<xs:element ref="bank-name" />
-				<xs:element ref="iban" />
+				<xs:element ref="iban" minOccurs="0"/>
 				<xs:element ref="country-description" />
 				<xs:element ref="status-id" minOccurs="0"/>
 				<xs:element ref="bank-city" />
-				<xs:element ref="bank-account-number" />								
+				<xs:element ref="bank-account-number" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -1250,8 +1252,8 @@
 				<xs:element ref="tax" minOccurs="0"/>
 				<xs:element ref="tax-rate" minOccurs="0"/>
 				<xs:element ref="currency" minOccurs="0"/>
-				<xs:element ref="soft-descriptor"/>
-				<xs:element ref="payment-method"/>
+				<xs:element ref="soft-descriptor" minOccurs="0"/>
+				<xs:element ref="payment-method" minOccurs="0"/>
 				<xs:element ref="target-balance"/>
 				<xs:element ref="credit-card" minOccurs="0" />
 				<xs:element ref="paypal-transaction-data" minOccurs="0" />
@@ -1581,7 +1583,7 @@
 				<xs:element ref="product-short-description" />
 				<xs:element ref="product-long-description" />
 				<xs:element ref="product-info-url" />
-				<xs:element ref="product-image" />
+				<xs:element ref="product-image" minOccurs="0"/>
 				<xs:element ref="product-merchant-descriptor" />
 				<xs:element ref="product-support-email" />
 				<xs:element ref="product-skus" />
@@ -1926,7 +1928,7 @@
 	<xs:element name="charge-info">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="charge-description" />
+				<xs:element ref="charge-description" minOccurs="0"/>
 				<xs:element ref="from-date"  minOccurs="0" />
 				<xs:element ref="to-date"  minOccurs="0" />
 			</xs:sequence>
@@ -1972,19 +1974,19 @@
 			<xs:sequence>
 				<xs:element ref="subscription-id" />
 				<xs:element ref="status" />
-				<xs:element ref="cancellation-reason" minOccurs="0" />
+				<xs:element ref="cancellation-reason" minOccurs="0"/>
 				<xs:element ref="underlying-sku-id" />
 				<xs:element ref="shopper-id" />
-				<xs:element ref="recurring-charge" minOccurs="0" />
-				<xs:element ref="credit-card" minOccurs="0" />	
-				<xs:element ref="ecp" minOccurs="0" />
-				<xs:element ref="paypal" minOccurs="0" />
+				<xs:element ref="recurring-charge" minOccurs="0"/>
+				<xs:element ref="credit-card" minOccurs="0" />
+				<xs:element ref="ecp" minOccurs="0"/>
+				<xs:element ref="paypal" minOccurs="0"/>
 				<xs:element ref="paypal-subscription" minOccurs="0" />
 				<xs:element ref="catalog-recurring-charge" minOccurs="0" />
 				<xs:element ref="override-recurring-charge" minOccurs="0" />
 				<xs:element ref="coupon" minOccurs="0" />
 				<xs:element ref="charge-frequency" minOccurs="0"/>
-				<xs:element ref="next-charge-date" />
+				<xs:element ref="next-charge-date" minOccurs="0"/>
 				<xs:element ref="manual-recurring-info" minOccurs="0"/>
 				<xs:element ref="auto-renew" minOccurs="0"/>
 				<xs:element ref="last-charge-result" minOccurs="0"/>
@@ -2173,8 +2175,8 @@
 			<xs:sequence>
 				<xs:element ref="currency" minOccurs="0"/>
 				<xs:element ref="ip" />
-				<xs:element ref="country" />
-				<xs:element ref="state" />
+				<xs:element ref="country" minOccurs="0"/>
+				<xs:element ref="state" minOccurs="0"/>
 				<xs:element ref="store-id" />
 			</xs:sequence>
 		</xs:complexType>

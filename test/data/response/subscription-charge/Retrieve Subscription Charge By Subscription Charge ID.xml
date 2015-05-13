@@ -6,7 +6,7 @@
     <to-date>31/12/2013</to-date>
   </charge-info>
   <charge-invoice-info>
-    <date-created>1/1/2013<date-created>
+    <date-created>1/1/2013</date-created>
     <invoice-id>123456</invoice-id>
     <invoice-amount>100</invoice-amount>
     <invoice-currency>USD</invoice-currency>
