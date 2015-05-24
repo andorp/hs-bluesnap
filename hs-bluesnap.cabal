@@ -29,6 +29,7 @@ library
                        HaXml >=1.25 && <1.26,
                        network-uri >=2.6 && <2.7,
                        mtl >=2.2 && <2.3,
+                       pretty >=1.1 && <1.2,
                        tasty >=0.10 && <0.11,
                        tasty-hunit >= 0.9 && <= 0.10,
                        text >=1.1 && <1.2
