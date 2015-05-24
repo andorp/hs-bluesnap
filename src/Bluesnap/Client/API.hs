@@ -15,13 +15,13 @@ class Object o where
   data ObjectID o
   data ObjectRequest o
   data ObjectResponse o
-  servicePath  :: o -> Path
-  idToPath :: ObjectID o -> Path
-  responseParser :: o -> XMLParser (ObjectResponse o)
-  fromResponse :: ObjectResponse o -> Either String o
-  toRequest :: o -> ObjectRequest o
-  requestToContent :: ObjectRequest o -> [Content ()]
-  oidFromLocation :: String -> ObjectID o
+  servicePath       :: o                -> Path
+  idToPath          :: ObjectID o       -> Path
+  responseParser    :: o                -> XMLParser (ObjectResponse o)
+  fromResponse      :: ObjectResponse o -> Either String o
+  toRequest         :: o                -> ObjectRequest o
+  requestToContents :: ObjectRequest o  -> [Content ()]
+  oidFromLocation   :: String           -> ObjectID o
 
 -- | Type inference trick to get out the object type from a given object id type
 fakeObj :: (Object o) => ObjectID o -> o
@@ -42,7 +42,7 @@ get oid = do
 -- the location header.
 save :: Object o => o -> Bluesnap (ObjectID o)
 save obj = do
-  payload <- fmap render . safeHead . requestToContent $ toRequest obj
+  payload <- fmap render . safeHead . requestToContents $ toRequest obj
   (headers, payload) <- Client.put (servicePath obj) payload
   location <- getLocationValue headers
   return $ oidFromLocation location
