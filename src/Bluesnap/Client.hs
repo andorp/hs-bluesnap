@@ -103,11 +103,12 @@ curlEnv path = do
   base <- baseURL
   let url = base ++ path
   auth <- basicAuth
-  let opts = [CurlHttpHeaders [
-                  "Content-Type: application/xml"
-                , "Authorization: " ++ auth
-                , "Accept-Charset: UTF-8"
-                ]]
+  let opts = [ CurlHttpHeaders [
+                 "Content-Type: application/xml"
+               , "Authorization: " ++ auth
+               , "Accept-Charset: UTF-8"
+               ]
+             ]
   return (url, opts)
 
 -- | Sends an authorized GET request to the bluesnap for the given path
@@ -155,7 +156,8 @@ curlPostResponse :: URLString -> [CurlOption] -> String -> IO CurlResponse
 curlPostResponse url opts payload = curlGetResponse_ url ((CurlPost True):(CurlPostFields [payload]):opts)
 
 curlPutResponse :: URLString -> [CurlOption] -> String -> IO CurlResponse
-curlPutResponse url opts payload = curlGetResponse_ url ((CurlPut True):(CurlPostFields [payload]):opts)
+curlPutResponse url opts payload = curlGetResponse_ url ((CurlPost True):(CurlPostFields [payload]):(CurlCustomRequest "PUT"):opts)
+  -- HACK Around: (CurlCustomRequest "PUT") <=> http://sourceforge.net/p/curl/bugs/1349/
 
 headerAndPayload :: CurlResponse_ [Header] String -> ([Header], Payload)
 headerAndPayload c = (respHeaders c, respBody c)
