@@ -5,9 +5,9 @@ module Bluesnap.Client.API where
 import           Data.Char (toLower)
 import           Data.List (find)
 
-import           Bluesnap.API.Parser
 import qualified Bluesnap.API.Request  as Request
 import qualified Bluesnap.API.Response as Response
+import           Bluesnap.API.XML
 import           Bluesnap.Client hiding (get, post, put)
 import qualified Bluesnap.Client as Client (get, post, put)
 

@@ -1,4 +1,4 @@
-module Bluesnap.API.Parser (
+module Bluesnap.API.XML (
     parse
   , render
   , SchemaType(..)
