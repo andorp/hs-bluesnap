@@ -3,11 +3,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Bluesnap.Client (
     module Control.Applicative
+  , module Control.Monad.Except
   , Bluesnap(..)
   , BluesnapError(..)
   , Environment(..)
   , Path
   , Payload
+  , Header
   , runBluesnap
   , get
   , post
@@ -20,6 +22,7 @@ import           Control.Exception
 import           Control.Monad
 import           Control.Monad.Trans
 import qualified Control.Monad.Except as CME
+import           Control.Monad.Except
 import qualified Control.Monad.Reader as CMR
 import           Data.ByteString.Char8 as BS
 import qualified Data.ByteString.Base64 as B64
@@ -129,7 +132,7 @@ post path payload = do
   (url, opts) <- curlEnv path
   rsp <- bluesnapIO $ curlPostResponse url opts payload
   checkCurlErrors rsp
-  return $ headerAndPayload rsp
+  return $ headersAndPayload rsp
 
 -- | Sends an authorized PUT request to the bluesnap for the given path
 -- and payload returns the headers and body on success or throws an error if
@@ -139,7 +142,7 @@ put path payload = do
   (url, opts) <- curlEnv path
   rsp <- bluesnapIO $ curlPutResponse url opts payload
   checkCurlErrors rsp
-  return $ headerAndPayload rsp
+  return $ headersAndPayload rsp
 
 -- | Checks the parsing result for error, if it happened throws
 -- a bluesnap ParseError, otherwise returns with the value
@@ -156,5 +159,5 @@ curlPutResponse :: URLString -> [CurlOption] -> String -> IO CurlResponse
 curlPutResponse url opts payload = curlGetResponse_ url ((CurlPost True):(CurlPostFields [payload]):(CurlCustomRequest "PUT"):opts)
   -- HACK Around: (CurlCustomRequest "PUT") <=> http://sourceforge.net/p/curl/bugs/1349/
 
-headerAndPayload :: CurlResponse_ [Header] String -> ([Header], Payload)
-headerAndPayload c = (respHeaders c, respBody c)
+headersAndPayload :: CurlResponse_ [Header] String -> ([Header], Payload)
+headersAndPayload c = (respHeaders c, respBody c)
