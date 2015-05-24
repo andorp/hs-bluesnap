@@ -3,7 +3,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Bluesnap.Client (
     module Control.Applicative
-  , module Bluesnap.Model
   , Bluesnap(..)
   , BluesnapError(..)
   , Environment(..)
@@ -27,8 +26,6 @@ import qualified Data.ByteString.Base64 as B64
 import           Data.Text
 
 import           Network.Curl hiding (Header)
-
-import           Bluesnap.Model
 
 data BluesnapError
   = BluesnapError String
