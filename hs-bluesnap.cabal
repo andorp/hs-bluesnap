@@ -30,6 +30,7 @@ library
                        network-uri >=2.6 && <2.7,
                        mtl >=2.2 && <2.3,
                        pretty >=1.1 && <1.2,
+                       split >= 0.2 && <0.3,
                        tasty >=0.10 && <0.11,
                        tasty-hunit >= 0.9 && <= 0.10,
                        text >=1.1 && <1.2
