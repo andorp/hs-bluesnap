@@ -73,5 +73,5 @@ instance Object Subscription where
   responseParser _ = fmap SubsResp $ Response.elementSubscription
   fromResponse (SubsResp r) = Right $ Subscription (show r)
   toRequest s = error "toRequest s"
-  requestToContent = Request.elementToXMLSubscription . unSubsReq
+  requestToContents = Request.elementToXMLSubscription . unSubsReq
   oidFromLocation = SubscriptionID -- TODO: Last part of the path
