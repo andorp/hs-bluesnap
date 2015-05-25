@@ -4,17 +4,17 @@
 module Bluesnap.Client (
     module Control.Applicative
   , module Control.Monad.Except
+  , Authorization(..)
   , Bluesnap(..)
   , BluesnapError(..)
-  , Environment(..)
+  , Header
   , Path
   , Payload
-  , Header
-  , runBluesnap
+  , checkParse
   , get
   , post
   , put
-  , checkParse
+  , runBluesnap
   ) where
 
 import           Control.Applicative
@@ -37,30 +37,42 @@ data BluesnapError
   | ParseError String
   deriving (Show)
 
-data Environment = Environment {
+data Authorization = Authorization {
     env_user :: String
   , env_password :: String
   , env_base_url :: String
   , env_merchant_id :: String
   } deriving (Eq, Show)
 
+data Context = Context {
+    authorization :: Authorization
+  , cache         :: Cache
+  } deriving (Eq, Show)
+
 data Cache = Cache {
     basicAuthCache :: String
-  }
+  } deriving (Eq, Show)
 
--- Craete cached values from environment at the start time
-createCache :: Environment -> Cache
+-- Create cached values from environment at the start time
+createCache :: Authorization -> Cache
 createCache env = Cache {
     basicAuthCache = BS.unpack . BS.append "Basic " . B64.encode . BS.pack $ join [
         env_user env, ":", env_password env 
       ]
   }
 
-newtype Bluesnap a = Bluesnap (CMR.ReaderT (Environment, Cache) (CME.ExceptT BluesnapError IO) a)
-  deriving (Functor, Applicative, Monad, CME.MonadError BluesnapError, CMR.MonadReader (Environment, Cache))
+-- Create context for the bluesnap operations
+createContext :: Authorization -> Context
+createContext auth = Context {
+    authorization = auth
+  , cache = createCache auth
+  }
 
-runBluesnap :: Environment -> Bluesnap a -> IO (Either BluesnapError a)
-runBluesnap env (Bluesnap bs) = CME.runExceptT $ CMR.runReaderT bs (env, createCache env)
+newtype Bluesnap a = Bluesnap (CMR.ReaderT Context (CME.ExceptT BluesnapError IO) a)
+  deriving (Functor, Applicative, Monad, CME.MonadError BluesnapError, CMR.MonadReader Context)
+
+runBluesnap :: Authorization -> Bluesnap a -> IO (Either BluesnapError a)
+runBluesnap auth (Bluesnap bs) = CME.runExceptT $ CMR.runReaderT bs (createContext auth)
 
 type Path    = String
 type Payload = String
@@ -80,10 +92,10 @@ bluesnapIO m = Bluesnap $ do
     try' = try
 
 baseURL :: Bluesnap String
-baseURL = CMR.asks (env_base_url . fst)
+baseURL = CMR.asks (env_base_url . authorization)
 
 basicAuth :: Bluesnap String
-basicAuth = CMR.asks (basicAuthCache . snd)
+basicAuth = CMR.asks (basicAuthCache . cache)
 
 -- | Check for errors in Curl and thow a bluesnap error if found
 checkCurlErrors :: CurlResponse -> Bluesnap ()
