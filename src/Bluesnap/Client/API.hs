@@ -7,7 +7,7 @@ module Bluesnap.Client.API (
   , update
   ) where
 
-import           Prelude hiding (last)
+import           Prelude hiding (last, log)
 
 import           Data.Char (toLower)
 import           Data.List (find)
@@ -31,7 +31,7 @@ class Object o where
   fromResponse      :: ObjectResponse o -> Either String o
   toRequest         :: o                -> ObjectRequest o
   requestToContents :: ObjectRequest o  -> [Content ()]
-  oidFromLocation   :: String           -> ObjectID o
+  oidConstructor    :: String           -> ObjectID o
 
 -- | Type inference trick to get out the object type from a given object id type
 fakeObj :: (Object o) => ObjectID o -> o
@@ -53,9 +53,10 @@ retrieve oid = do
 create :: Object o => o -> Bluesnap (ObjectID o)
 create obj = do
   payload <- fmap render . safeHead . requestToContents $ toRequest obj
+  log $ "PAYLOAD: " ++ payload
   (headers, payload) <- Client.post (servicePath obj) payload
-  location <- getLocationValue headers
-  return $ oidFromLocation location
+  oid <- getIDFromLocation headers
+  return $ oidConstructor oid
 
 -- | Updates the object in Bluesnap for the given object id and
 -- returns unit if the update was successful otherwise throws a
@@ -109,4 +110,4 @@ instance Object Subscription where
   fromResponse (SubsResp r) = Right $ Subscription (show r)
   toRequest s = error "toRequest s"
   requestToContents = Request.elementToXMLSubscription . unSubsReq
-  oidFromLocation = SubscriptionID -- TODO: Last part of the path
+  oidConstructor = SubscriptionID

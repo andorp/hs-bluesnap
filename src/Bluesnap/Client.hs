@@ -15,7 +15,10 @@ module Bluesnap.Client (
   , post
   , put
   , runBluesnap
+  , log
   ) where
+
+import           Prelude hiding (log)
 
 import           Control.Applicative
 import           Control.Exception
@@ -91,6 +94,9 @@ bluesnapIO m = Bluesnap $ do
     try' :: IO a -> IO (Either SomeException a)
     try' = try
 
+log :: String -> Bluesnap ()
+log msg = bluesnapIO $ Prelude.putStr msg
+
 baseURL :: Bluesnap String
 baseURL = CMR.asks (env_base_url . authorization)
 
@@ -102,7 +108,8 @@ checkCurlErrors :: CurlResponse -> Bluesnap ()
 checkCurlErrors rsp = do
   let curlCode = respCurlCode rsp
   when (isNotOK curlCode) . CME.throwError . CurlError $ join [
-      show curlCode, " ", show (respStatus rsp), " ", respStatusLine rsp
+      show curlCode, " ", show (respStatus rsp), " ", respStatusLine rsp, " "
+    , respBody rsp
     ]
   where
     isNotOK CurlOK = False
@@ -152,6 +159,7 @@ post path payload = do
 put :: Path -> Payload -> Bluesnap ([Header], Payload)
 put path payload = do
   (url, opts) <- curlEnv path
+  log payload
   rsp <- bluesnapIO $ curlPutResponse url opts payload
   checkCurlErrors rsp
   return $ headersAndPayload rsp
@@ -165,10 +173,10 @@ checkParse (Right x) = return x
 -- * Curl Helpers
 
 curlPostResponse :: URLString -> [CurlOption] -> String -> IO CurlResponse
-curlPostResponse url opts payload = curlGetResponse_ url ((CurlPost True):(CurlPostFields [payload]):opts)
+curlPostResponse url opts payload = curlGetResponse_ url ((CurlPost True):(CurlNoBody False):(CurlPostFields [payload]):opts)
 
 curlPutResponse :: URLString -> [CurlOption] -> String -> IO CurlResponse
-curlPutResponse url opts payload = curlGetResponse_ url ((CurlPost True):(CurlPostFields [payload]):(CurlCustomRequest "PUT"):opts)
+curlPutResponse url opts payload = curlGetResponse_ url ((CurlPost True):(CurlPostFields [payload]):(CurlCustomRequest "PUT"):(CurlNoBody False):opts)
   -- HACK Around: (CurlCustomRequest "PUT") <=> http://sourceforge.net/p/curl/bugs/1349/
 
 headersAndPayload :: CurlResponse_ [Header] String -> ([Header], Payload)
